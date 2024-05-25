@@ -63,3 +63,7 @@ Desarrollar una aplicación de escritorio que permita registrar y gestionar los 
 * RF23: Modificación de los datos de docente.
 * RF24: Eliminación de docente del sistema [NO SE PUEDE ELIMINAR SI TIENE UNA MATERIA ASIGNADA].
 * RF25: Búsqueda de DOCENTE por nombre y/o ID.
+
+
+## ACTUALIZACIONES 
+25/5/2024 - CREACION REPOSITORIO, CREACION GESTION DE NOTAS, CREACION SP
