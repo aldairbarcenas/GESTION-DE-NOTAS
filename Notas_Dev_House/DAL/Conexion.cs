@@ -6,23 +6,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net;
+using System.Globalization;
 
 namespace DAL
 {
     public class Conexion
     {
         static string conexionstring = "server=sql.holamundodevs.com; database=AldairDouglasLizeth_NotasDB;" +
-       "User Id=erickbarcerna; Password=Holamundo123*";
+        "User Id=erickbarcerna; Password=Holamundo123*";
         SqlConnection conexion = new SqlConnection(conexionstring);
-
 
 
         public DataTable consultarEstudiantes()
         {
 
             conexion.Open();
-            string query = "select * from Estudiantes";
-            SqlCommand comando = new SqlCommand(query, conexion);
+
+            SqlCommand comando = new SqlCommand("ConsultarEstudiantes", conexion);
+            comando.CommandType = CommandType.StoredProcedure; //aplicamos el comando del procedimiento
             SqlDataAdapter data = new SqlDataAdapter(comando);
             DataTable tabla = new DataTable();
             data.Fill(tabla);
@@ -31,16 +32,26 @@ namespace DAL
         }
 
 
-        public int insertarEstudiante(string ID, string nombres, string apellidos, string fechaNacimiento,
+        public int insertarEstudiante(string ID, string nombres, string apellidos, DateTime fechaNacimiento,
             string direccion, string telefono)
 
         {
 
             int flag = 0;
             conexion.Open();
-            string query = "insert into Estudiantes values ('" + ID + "','" + nombres+ "','" + apellidos + "'," +
-                "'" + fechaNacimiento + "','" + direccion + "','" + telefono + "')";
-            SqlCommand comando = new SqlCommand(query, conexion);
+            SqlCommand comando = new SqlCommand("InsertarEstudiante", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+
+            string fecha_nacimiento = fechaNacimiento.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+            // Agregar parámetros
+            comando.Parameters.AddWithValue("@ID", ID);
+            comando.Parameters.AddWithValue("@Nombres", nombres);
+            comando.Parameters.AddWithValue("@Apellidos", apellidos);
+            comando.Parameters.AddWithValue("@FechaNacimiento", fecha_nacimiento);
+            comando.Parameters.AddWithValue("@Direccion", direccion);
+            comando.Parameters.AddWithValue("@Telefono", telefono);
+
+            // Ejecutar el comando
             flag = comando.ExecuteNonQuery();
             conexion.Close();
             return flag;
@@ -52,27 +63,41 @@ namespace DAL
         {
             int flag = 0;
             conexion.Open();
-            string query = "Delete from Estudiantes where ID ='" + ID + "'";
-            SqlCommand comando = new SqlCommand(query, conexion);
+            SqlCommand comando = new SqlCommand("EliminarEstudiante", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+
+            // Agregar parámetro
+            comando.Parameters.AddWithValue("@ID", ID);
+
+            // Ejecutar el comando
             flag = comando.ExecuteNonQuery();
             conexion.Close();
             return flag;
         }
 
         public int modificarEstudiante(string nombre, string apellido, string dni, string telefono,
-            string FechaNacimiento, string Direccion)
+            DateTime FechaNacimiento2, string Direccion)
         {
             int flag = 0;
             conexion.Open();
-            string query = "Update Estudiantes set Nombres ='" + nombre + "',Apellidos='" + apellido + "',ID='" + dni + "',Telefono='" + telefono + "', FechaNacimiento='" + FechaNacimiento + "',Direccion='" + Direccion + "' where ID='" + dni + "'";
-            SqlCommand comando = new SqlCommand(query, conexion);
+            SqlCommand comando = new SqlCommand("ModificarEstudiante", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+            string fecha_nacimiento = FechaNacimiento2.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+            // Agregar parámetros
+            comando.Parameters.AddWithValue("@Nombre", nombre);
+            comando.Parameters.AddWithValue("@Apellido", apellido);
+            comando.Parameters.AddWithValue("@DNI", dni);
+            comando.Parameters.AddWithValue("@Telefono", telefono);
+            comando.Parameters.AddWithValue("@FechaNacimiento", fecha_nacimiento);
+            comando.Parameters.AddWithValue("@Direccion", Direccion);
+
+            // Ejecutar el comando
             flag = comando.ExecuteNonQuery();
             conexion.Close();
             return flag;
 
 
         }
-
 
         //public SqlDataReader ConsultarEstudiante(string ID)
         //{

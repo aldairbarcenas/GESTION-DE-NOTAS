@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace BLL
             return cn.consultarEstudiantes();
         }
 
-        public int insertarEstudiante(string ID, string nombres, string apellidos, string fechaNacimiento,
+        public int insertarEstudiante(string ID, string nombres, string apellidos, DateTime fechaNacimiento,
             string direccion, string telefono)
 
         {
@@ -34,10 +35,10 @@ namespace BLL
         }
 
         public int modificarEstudiante(string nombre, string apellido, string dni, string telefono,
-            string FechaNacimiento, string Direccion)
+            DateTime FechaNacimiento, string Direccion)
         {
 
-            return cn.modificarEstudiante(nombre,apellido,dni,telefono,FechaNacimiento,Direccion);
+            return cn.modificarEstudiante(nombre,apellido,dni,telefono,FechaNacimiento, Direccion);
 
 
         }

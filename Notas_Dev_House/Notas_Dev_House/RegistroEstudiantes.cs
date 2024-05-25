@@ -13,7 +13,8 @@ namespace Notas_Dev_House
 {
     public partial class RegistroEstudiantes : Form
     {
-        NegocioSql cn = new NegocioSql(); 
+        NegocioSql cn = new NegocioSql();
+        DateTime Fecha_Nacimiento;
         public RegistroEstudiantes()
         {
             InitializeComponent();
@@ -32,15 +33,17 @@ namespace Notas_Dev_House
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //Fecha_Nacimiento=DateTime.Parse(fecha_nacimiento_txt.Text);
 
-            cn.insertarEstudiante(id_txt.Text, nombres_txt.Text, apellidos_txt.Text, fecha_nacimiento_txt.Text, direccion_txt.Text, telefono_txt.Text);
+            cn.insertarEstudiante(id_txt.Text, nombres_txt.Text, apellidos_txt.Text,Fecha_Nacimiento, direccion_txt.Text, telefono_txt.Text);
             dataGridView1.DataSource = cn.ConsultaDt();
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            cn.modificarEstudiante(nombres_txt.Text,apellidos_txt.Text,id_txt.Text,telefono_txt.Text,fecha_nacimiento_txt.Text,direccion_txt.Text);
+            //Fecha_Nacimiento = DateTime.Parse(fecha_nacimiento_txt.Text);
+            cn.modificarEstudiante(nombres_txt.Text,apellidos_txt.Text,id_txt.Text,telefono_txt.Text, Fecha_Nacimiento, direccion_txt.Text);
             dataGridView1.DataSource = cn.ConsultaDt();
         }
 
