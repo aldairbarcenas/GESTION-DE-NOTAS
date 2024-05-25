@@ -21,7 +21,8 @@ namespace Notas_Dev_House
         {
             this.Hide();
             RegistroEstudiantes registroEstudiantes = new RegistroEstudiantes();
-            registroEstudiantes.Show();
+            registroEstudiantes.ShowDialog();
+            this.Show();
         }
     }
 }

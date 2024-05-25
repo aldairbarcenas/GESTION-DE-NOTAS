@@ -52,7 +52,7 @@ namespace Notas_Dev_House
 
         private void button4_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Hide();
         }
     }
 }
