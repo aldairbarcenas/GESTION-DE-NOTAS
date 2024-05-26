@@ -6,15 +6,11 @@ GO
 SET QUOTED_IDENTIFIER ON -- Indica que se deben usar comillas dobles (") para delimitar identificadores.
 GO
 
-ALTER     PROCEDURE [dbo].[SP_CrudEstudiantes]
+ALTER PROCEDURE [dbo].[SP_CrudGrados]
 (
 	@intProceso				        INT,
-	@intId							NVARCHAR(20) = NULL,
-	@strNombres	    			    NVARCHAR(50) = NULL,
-	@strApelllidos    			    NVARCHAR(50) = NULL,
-    @dateFechaNacimiento            DATETIME = NULL,
-	@strDireccion	                NVARCHAR(100) = NULL,
-    @strTelefono    			    NVARCHAR(20) = NULL
+	@intId							INT,
+	@strNombre	    			    NVARCHAR(50) = NULL	
 )
 AS
 BEGIN
@@ -26,21 +22,18 @@ BEGIN
 		BEGIN
 			SELECT
 				[Id],
-				[Nombres],
-				[Apellidos],
-				[FechaNacimiento],
-				[Direccion],
-				[Telefono] --WITH(NOLOCK): Esta cláusula se utiliza para realizar una lectura sin bloqueo
-			FROM [AldairDouglasLizeth_NotasDB].[dbo].[Estudiantes] WITH(NOLOCK) -- de la base de datos aldair de la tabla estudiantes
-			WHERE ([Nombres] = @strNombres OR @strNombres IS NULL); --si el valor de nombre coincide con el buscado lo filtra, sino los muestra todos
+				[Nombre]
+				--WITH(NOLOCK): Esta cláusula se utiliza para realizar una lectura sin bloqueo
+			FROM [AldairDouglasLizeth_NotasDB].[dbo].[Grados] WITH(NOLOCK) -- de la base de datos aldair de la tabla estudiantes
+			WHERE ([Nombre] = @strNombre OR @strNombre IS NULL); --si el valor de nombre coincide con el buscado lo filtra, sino los muestra todos
     END
 
 	--2 - INSERT 
     IF @intProceso = 2 --recibir un 2 para insert
     BEGIN 
         SELECT TOP 1 @intRegistros = 1 --obtener el primer regustro en la tabla estudiantes donde el nombre coincida con el buscado
-        FROM [AldairDouglasLizeth_NotasDB].[dbo].[Estudiantes] WITH(NOLOCK) --este primer registro de esta BD y esta tabla
-        WHERE ([Nombres] = @strNombres);--donde verificar si el nombre existe
+        FROM [AldairDouglasLizeth_NotasDB].[dbo].[Grados] WITH(NOLOCK) --este primer registro de esta BD y esta tabla
+        WHERE ([Nombre] = @strNombre);--donde verificar si el nombre existe
 
         IF @@ROWCOUNT = 1 --si se encuentra un registro sera igual a 1
         BEGIN
@@ -49,23 +42,16 @@ BEGIN
         END
 		-- si el registro no existe se inicia una transaccion
        BEGIN TRANSACTION --e la operación se realizará completamente o no se realizará en absoluto.
-			INSERT INTO [AldairDouglasLizeth_NotasDB].[dbo].[Estudiantes]
+			INSERT INTO [AldairDouglasLizeth_NotasDB].[dbo].[Grados]
 			(
 				[ID],
-				[Nombres],
-				[Apellidos],
-				[FechaNacimiento],
-				[Direccion],
-				[Telefono]
+				[Nombre]
+				
 			)
 			VALUES
 			(
                 @intId,
-				@strNombres,
-                @strApelllidos,
-                @dateFechaNacimiento,
-                @strDireccion,
-				@strTelefono
+				@strNombre               
 			)
        COMMIT TRANSACTION --se confirma la transaccion
     END
@@ -74,14 +60,11 @@ BEGIN
     IF @intProceso = 3
     BEGIN
 		  BEGIN TRANSACTION 
-				UPDATE [AldairDouglasLizeth_NotasDB].[dbo].[Estudiantes]
+				UPDATE [AldairDouglasLizeth_NotasDB].[dbo].[Grados]
 				SET
 				[ID]= @intId,
-				[Nombres]= @strNombres,
-				[Apellidos]=@strApelllidos,
-				[FechaNacimiento]=@dateFechaNacimiento,
-				[Direccion]=@strDireccion,
-				[Telefono]=@strTelefono
+				[Nombre]= @strNombre
+				
                 WHERE ([Id] = @intId);
 		  COMMIT TRANSACTION
     END
@@ -89,10 +72,12 @@ BEGIN
 	--4 - DELETE
 	IF @intProceso = 4
     BEGIN
-		DELETE FROM [AldairDouglasLizeth_NotasDB].[dbo].[Estudiantes]
+		DELETE FROM [AldairDouglasLizeth_NotasDB].[dbo].[Grados]
         WHERE ([Id] = @intId);
     END
 
 
 
 end
+
+

@@ -31,6 +31,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.registrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estudiantesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gradosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +49,8 @@
             // registrosToolStripMenuItem
             // 
             this.registrosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.estudiantesToolStripMenuItem});
+            this.estudiantesToolStripMenuItem,
+            this.gradosToolStripMenuItem});
             this.registrosToolStripMenuItem.Name = "registrosToolStripMenuItem";
             this.registrosToolStripMenuItem.Size = new System.Drawing.Size(84, 24);
             this.registrosToolStripMenuItem.Text = "Registros";
@@ -59,6 +61,13 @@
             this.estudiantesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.estudiantesToolStripMenuItem.Text = "Estudiantes";
             this.estudiantesToolStripMenuItem.Click += new System.EventHandler(this.estudiantesToolStripMenuItem_Click);
+            // 
+            // gradosToolStripMenuItem
+            // 
+            this.gradosToolStripMenuItem.Name = "gradosToolStripMenuItem";
+            this.gradosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.gradosToolStripMenuItem.Text = "Grados";
+            this.gradosToolStripMenuItem.Click += new System.EventHandler(this.gradosToolStripMenuItem_Click);
             // 
             // VentanaPrincipal
             // 
@@ -81,5 +90,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem registrosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem estudiantesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gradosToolStripMenuItem;
     }
 }

@@ -24,5 +24,14 @@ namespace Notas_Dev_House
             registroEstudiantes.ShowDialog();
             this.Show();
         }
+
+        private void gradosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Grados grados = new Grados();
+            grados.ShowDialog();
+            this.Show();
+
+        }
     }
 }

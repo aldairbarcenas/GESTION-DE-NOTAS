@@ -14,7 +14,7 @@ namespace BLL
     {
         Conexion cn = new Conexion();
 
-     
+
 
         public void CrudEstudiante(int intProceso, string ID, string nombres, string apellidos, DateTime FechaNacimiento, string direccion, string telefono)
 
@@ -31,7 +31,7 @@ namespace BLL
             return cn.ConsultarEstudiantes(nombres);
         }
 
-      
+
 
         public void EliminarEstudiante(int intProceso, string ID)
 
@@ -39,5 +39,24 @@ namespace BLL
             cn.EliminarEstudiante(4, ID);
 
         }
-    }
+
+        public DataTable ConsultarGrados(int IntProceso)
+        {
+            return cn.ConsultarGrados(IntProceso);
+
+        }
+
+
+        public void CrudGrados(int intProceso, string Nombre, string ID)
+        {
+
+            cn.CrudGrados(intProceso, Nombre,ID);
+
+        }
+
+
+
+
+        }
 }
+
