@@ -18,73 +18,103 @@ namespace DAL
 
 
 
-        public DataTable ConsultarEstudiantes()
-        {
-
-            conexion.Open();
-
-            SqlCommand comando = new SqlCommand("SP_CrudEstudiantes", conexion);
-            comando.CommandType = CommandType.StoredProcedure;
-            comando.Parameters.AddWithValue("@intProceso", 1);
-
-            SqlDataAdapter data = new SqlDataAdapter(comando);
-            DataTable tabla = new DataTable();
-            data.Fill(tabla);
-            conexion.Close();
-            return tabla;
-        }
-
-
-        public void CrudEstudiante(int intProceso, string ID, string nombres, string apellidos, DateTime FechaNacimiento, string direccion, string telefono)
-        
-        {
-            conexion.Open();
-            try
-            {
-                
-                SqlCommand comando = new SqlCommand("SP_CrudEstudiantes", conexion);
-                comando.CommandType = CommandType.StoredProcedure; 
-                
-                comando.Parameters.AddWithValue("@intProceso", intProceso);
-                comando.Parameters.AddWithValue("@intId", ID);
-                comando.Parameters.AddWithValue("@strNombres", nombres);
-                comando.Parameters.AddWithValue("@strApellidos", apellidos);
-                comando.Parameters.AddWithValue("@dateFechaNacimiento", FechaNacimiento);
-                comando.Parameters.AddWithValue("@strDireccion", direccion);
-                comando.Parameters.AddWithValue("@strTelefono", telefono);
-
-                comando.ExecuteNonQuery();
-                
-            }
-            catch (Exception)
-            {
-
-               
-            }
-            conexion.Close();
-        }
-
-
-        public void EliminarEstudiante(int intProceso, string ID)
-
+        public DataTable ConsultarEstudiantes(string nombres)
         {
 
             try
             {
                 conexion.Open();
+
                 SqlCommand comando = new SqlCommand("SP_CrudEstudiantes", conexion);
                 comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@intProceso", 1);
 
-                comando.Parameters.AddWithValue("@intProceso", intProceso);
-                comando.Parameters.AddWithValue("@intId", ID);                
+                if (string.IsNullOrEmpty(nombres))
+                {
+                    comando.Parameters.AddWithValue("@strNombres", DBNull.Value);
+                }
+                else
+                {
+                    comando.Parameters.AddWithValue("@strNombres", nombres);
+                }
 
-                comando.ExecuteNonQuery();
+               
+
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable tabla = new DataTable();
+                data.Fill(tabla);
                 conexion.Close();
+                return tabla;
+
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                Console.WriteLine("Error al ejecutar el procedimiento almacenado: " + ex.Message);
+                throw;
+            }
+           
+
+        }
+
+
+        public void CrudEstudiante(int intProceso, string ID, string nombres, string apellidos, DateTime FechaNacimiento, string direccion, string telefono)
+        
+        {                   
+                
+                SqlCommand comando = new SqlCommand("SP_CrudEstudiantes", conexion);
+                comando.CommandType = CommandType.StoredProcedure; 
+                //parametros del procedimiento almacenado
+                comando.Parameters.AddWithValue("@intProceso", intProceso);
+                comando.Parameters.AddWithValue("@intId", ID);
+                comando.Parameters.AddWithValue("@strNombres", nombres);
+                comando.Parameters.AddWithValue("@strApellidos", apellidos);
+
+                comando.Parameters.AddWithValue("@dateFechaNacimiento", FechaNacimiento.Date);
+                comando.Parameters.AddWithValue("@strDireccion", direccion);
+                comando.Parameters.AddWithValue("@strTelefono", telefono);             
+
+            try
+            {
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                // Manejar excepciones de SQL
+                Console.WriteLine("Error : " + ex.Message);
+            }
+
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+
+        public void EliminarEstudiante(int intProceso, string ID)
+
+        {            
+            SqlCommand comando = new SqlCommand("SP_CrudEstudiantes", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@intProceso", intProceso);
+            comando.Parameters.AddWithValue("@intId", ID);          
+
+            try
+            {
+                conexion.Open();
+                comando.ExecuteNonQuery();
+
+            }
+
+            catch (SqlException ex)
+            {
+                // Manejar excepciones de SQL
+                Console.WriteLine("Error al eliminar estudiante: " + ex.Message);
+            }
+
+            finally
+            {
+                conexion.Close();
             }
 
         }   

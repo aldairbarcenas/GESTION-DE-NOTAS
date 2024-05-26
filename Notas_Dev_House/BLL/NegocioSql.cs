@@ -25,10 +25,10 @@ namespace BLL
         }
 
 
-        public DataTable ConsultaDt()
+        public DataTable ConsultaDt(string nombres)
         {
 
-            return cn.ConsultarEstudiantes();
+            return cn.ConsultarEstudiantes(nombres);
         }
 
       
