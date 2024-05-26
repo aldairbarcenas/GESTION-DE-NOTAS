@@ -40,9 +40,9 @@ namespace BLL
 
         }
 
-        public DataTable ConsultarGrados(int IntProceso)
+        public DataTable ConsultarGrados(int IntProceso, int ID)
         {
-            return cn.ConsultarGrados(IntProceso);
+            return cn.ConsultarGrados(IntProceso, ID);
 
         }
 

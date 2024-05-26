@@ -121,7 +121,7 @@ namespace DAL
 
         ///////////////////////// grados///////////////////////////////////
         ///
-        public DataTable ConsultarGrados(int intProceso)
+        public DataTable ConsultarGrados(int intProceso, int ID)
         {
 
             try
@@ -130,7 +130,16 @@ namespace DAL
 
                 SqlCommand comando = new SqlCommand("SP_CrudGrados", conexion);
                 comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.AddWithValue("@intProceso", 1); 
+                comando.Parameters.AddWithValue("@intProceso", intProceso);
+
+                if (string.IsNullOrEmpty(ID.ToString()))
+                {
+                    comando.Parameters.AddWithValue("@intId", DBNull.Value);
+                }
+                else
+                {
+                    comando.Parameters.AddWithValue("@intId", ID);
+                }
 
                 SqlDataAdapter data = new SqlDataAdapter(comando);
                 DataTable tabla = new DataTable();

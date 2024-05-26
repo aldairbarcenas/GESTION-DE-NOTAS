@@ -33,5 +33,10 @@ namespace Notas_Dev_House
             this.Show();
 
         }
+
+        private void VentanaPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

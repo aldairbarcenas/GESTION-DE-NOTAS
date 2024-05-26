@@ -9,7 +9,7 @@ GO
 ALTER PROCEDURE [dbo].[SP_CrudGrados]
 (
 	@intProceso				        INT,
-	@intId							INT,
+	@intId							INT=null,
 	@strNombre	    			    NVARCHAR(50) = NULL	
 )
 AS
@@ -25,7 +25,7 @@ BEGIN
 				[Nombre]
 				--WITH(NOLOCK): Esta cláusula se utiliza para realizar una lectura sin bloqueo
 			FROM [AldairDouglasLizeth_NotasDB].[dbo].[Grados] WITH(NOLOCK) -- de la base de datos aldair de la tabla estudiantes
-			WHERE ([Nombre] = @strNombre OR @strNombre IS NULL); --si el valor de nombre coincide con el buscado lo filtra, sino los muestra todos
+			WHERE ([Id] = @intId OR @intId IS NULL OR [Id] != @intId); --si el valor de nombre coincide con el buscado lo filtra, sino los muestra todos
     END
 
 	--2 - INSERT 
@@ -76,8 +76,19 @@ BEGIN
         WHERE ([Id] = @intId);
     END
 
+	 -- 5 - CONSULTA LISTA DE ESTUDIANTES POR GRADO
+ IF @intProceso = 5
+    BEGIN
+        SELECT g.Nombre AS Grado, e.Nombres, e.Apellidos, e.FechaNacimiento, e.Direccion, e.Telefono
+        FROM [AldairDouglasLizeth_NotasDB].[dbo].[Grados] g
+        INNER JOIN [AldairDouglasLizeth_NotasDB].[dbo].[EstudiantesGrados] eg ON g.Id = eg.GradoId
+        INNER JOIN [AldairDouglasLizeth_NotasDB].[dbo].[Estudiantes] e ON eg.EstudianteId = e.ID
+        WHERE (g.Id = @intId)
+        ORDER BY g.Nombre, e.Nombres, e.Apellidos;
+    END
+END
 
 
-end
+
 
 
