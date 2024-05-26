@@ -14,41 +14,30 @@ namespace BLL
     {
         Conexion cn = new Conexion();
 
+     
+
+        public void CrudEstudiante(int intProceso, string ID, string nombres, string apellidos, DateTime FechaNacimiento, string direccion, string telefono)
+
+        {
+            cn.CrudEstudiante(intProceso, ID, nombres, apellidos, FechaNacimiento, direccion, telefono);
+
+
+        }
+
+
         public DataTable ConsultaDt()
         {
 
-            return cn.consultarEstudiantes();
+            return cn.ConsultarEstudiantes();
         }
 
-        public int insertarEstudiante(string ID, string nombres, string apellidos, DateTime fechaNacimiento,
-            string direccion, string telefono)
+      
+
+        public void EliminarEstudiante(int intProceso, string ID)
 
         {
-
-            return cn.insertarEstudiante(ID, nombres, apellidos, fechaNacimiento, direccion, telefono);
-        }
-
-        public int eliminarEstudiante(string ID)
-        {
-
-            return cn.eliminarEstudiante(ID);
-        }
-
-        public int modificarEstudiante(string nombre, string apellido, string dni, string telefono,
-            DateTime FechaNacimiento, string Direccion)
-        {
-
-            return cn.modificarEstudiante(nombre,apellido,dni,telefono,FechaNacimiento, Direccion);
-
+            cn.EliminarEstudiante(4, ID);
 
         }
-
-
-
-
-
-
-
-
     }
 }
