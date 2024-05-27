@@ -39,7 +39,7 @@ namespace BLL
             cn.EliminarEstudiante(4, ID);
 
         }
-
+        /////////////////////////////////////////// GRADOS
         public DataTable ConsultarGrados(int IntProceso, int ID)
         {
             return cn.ConsultarGrados(IntProceso, ID);
@@ -55,8 +55,15 @@ namespace BLL
         }
 
 
+        /////////////////////////////////////////// MATERIAS
 
+        public DataTable ConsultarMaterias(int IntProceso, int ID)
+        {
+            return cn.ConsultarMaterias(IntProceso,  ID);
 
         }
+
+
+    }
 }
 

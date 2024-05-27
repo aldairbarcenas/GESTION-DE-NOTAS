@@ -187,6 +187,77 @@ namespace DAL
         }
 
 
+        /////////////////////////////////// MATERIAS //////////////////////////////////////
+        ///
+
+        public DataTable ConsultarMaterias(int intProceso, int ID)
+        {
+
+            try
+            {
+                conexion.Open();
+
+                SqlCommand comando = new SqlCommand("SP_CrudMaterias", conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@intProceso", intProceso);
+
+                if (ID==888888888)
+                {
+                    comando.Parameters.AddWithValue("@intId", DBNull.Value);
+                }
+                else
+                {
+                    comando.Parameters.AddWithValue("@intId", ID);
+                }
+
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable tabla = new DataTable();
+                data.Fill(tabla);
+                conexion.Close();
+                return tabla;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+        }
+
+
+
+
+        public void CrudMaterias(int intProceso, string nombre, string docenteId, int gradoId)
+
+        {
+
+            SqlCommand comando = new SqlCommand("SP_CrudMaterias", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+            //parametros del procedimiento almacenado
+            comando.Parameters.AddWithValue("@intProceso", intProceso);
+            comando.Parameters.AddWithValue("@strNombre", Nombre);
+            comando.Parameters.AddWithValue("@intId", ID);
+
+            try
+            {
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                // Manejar excepciones de SQL
+                Console.WriteLine("Error : " + ex.Message);
+            }
+
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+
 
 
 

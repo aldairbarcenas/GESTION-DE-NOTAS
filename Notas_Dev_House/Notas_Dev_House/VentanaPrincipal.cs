@@ -38,5 +38,13 @@ namespace Notas_Dev_House
         {
 
         }
+
+        private void materiasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Materias materias = new Materias();
+            materias.ShowDialog();
+            this.Show();
+        }
     }
 }
