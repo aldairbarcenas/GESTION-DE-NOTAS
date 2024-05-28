@@ -201,7 +201,7 @@ namespace DAL
                 comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.AddWithValue("@intProceso", intProceso);
 
-                if (ID==888888888)
+                if (ID == 888888888)
                 {
                     comando.Parameters.AddWithValue("@intId", DBNull.Value);
                 }
@@ -229,34 +229,63 @@ namespace DAL
 
 
 
-        public void CrudMaterias(int intProceso, string nombre, string docenteId, int gradoId)
+        //public void CrudMaterias(int intProceso, string nombre, string docenteId, int gradoId)
 
+        //{
+
+        //    SqlCommand comando = new SqlCommand("SP_CrudMaterias", conexion);
+        //    comando.CommandType = CommandType.StoredProcedure;
+        //    //parametros del procedimiento almacenado
+        //    comando.Parameters.AddWithValue("@intProceso", intProceso);
+        //    comando.Parameters.AddWithValue("@strNombre", Nombre);
+        //    comando.Parameters.AddWithValue("@intId", ID);
+
+        //    try
+        //    {
+        //        conexion.Open();
+        //        comando.ExecuteNonQuery();
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        // Manejar excepciones de SQL
+        //        Console.WriteLine("Error : " + ex.Message);
+        //    }
+
+        //    finally
+        //    {
+        //        conexion.Close();
+        //    }
+        //}
+
+
+        public DataSet CargarDatosComboBox(string especialidad, string nombreDocente)
         {
-
-            SqlCommand comando = new SqlCommand("SP_CrudMaterias", conexion);
-            comando.CommandType = CommandType.StoredProcedure;
-            //parametros del procedimiento almacenado
-            comando.Parameters.AddWithValue("@intProceso", intProceso);
-            comando.Parameters.AddWithValue("@strNombre", Nombre);
-            comando.Parameters.AddWithValue("@intId", ID);
+            DataSet dataSet = new DataSet();
 
             try
             {
                 conexion.Open();
-                comando.ExecuteNonQuery();
-            }
-            catch (SqlException ex)
-            {
-                // Manejar excepciones de SQL
-                Console.WriteLine("Error : " + ex.Message);
-            }
 
+                SqlCommand command = new SqlCommand("SP_CargarDatosComboBox", conexion);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Especialidad", especialidad);
+                command.Parameters.AddWithValue("@NombreDocente", nombreDocente);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dataSet);
+            }
+            catch (Exception ex)
+            {
+                // Manejar la excepción
+                Console.WriteLine("Error al cargar los datos en los ComboBoxes: " + ex.Message);
+            }
             finally
             {
                 conexion.Close();
             }
-        }
 
+            return dataSet;
+        }
 
 
 

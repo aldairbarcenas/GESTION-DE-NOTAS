@@ -50,7 +50,7 @@ namespace BLL
         public void CrudGrados(int intProceso, string Nombre, string ID)
         {
 
-            cn.CrudGrados(intProceso, Nombre,ID);
+            cn.CrudGrados(intProceso, Nombre, ID);
 
         }
 
@@ -59,11 +59,16 @@ namespace BLL
 
         public DataTable ConsultarMaterias(int IntProceso, int ID)
         {
-            return cn.ConsultarMaterias(IntProceso,  ID);
+            return cn.ConsultarMaterias(IntProceso, ID);
 
         }
 
+        public DataSet CargarDatosComboBox(string especialidad, string nombreDocente)
+        {
+            return cn.CargarDatosComboBox(especialidad, nombreDocente);
 
+
+        }
     }
 }
 
