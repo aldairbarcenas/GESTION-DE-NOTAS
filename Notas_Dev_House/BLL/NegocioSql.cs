@@ -69,6 +69,13 @@ namespace BLL
 
 
         }
+
+        public void CrudMaterias(int intProceso, int ID, string nombre, string docenteId, int gradoId)
+
+        {
+            cn.CrudMaterias(intProceso, ID, nombre, docenteId, gradoId);
+
+        }
     }
 }
 

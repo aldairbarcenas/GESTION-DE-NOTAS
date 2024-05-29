@@ -227,35 +227,38 @@ namespace DAL
         }
 
 
+        public void CrudMaterias(int intProceso, int ID, string nombre, string docenteId, int gradoId)
+
+        {
+
+            SqlCommand comando = new SqlCommand("SP_CrudMaterias", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+            //parametros del procedimiento almacenado
+            comando.Parameters.AddWithValue("@intProceso", intProceso);
+            comando.Parameters.AddWithValue("@IntId", ID);
+            comando.Parameters.AddWithValue("@strNombre", nombre);            
+            comando.Parameters.AddWithValue("@strDocenteId ", docenteId);
+            comando.Parameters.AddWithValue("@intGradoId", gradoId);
 
 
-        //public void CrudMaterias(int intProceso, string nombre, string docenteId, int gradoId)
 
-        //{
+ 
+            try
+            {
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                // Manejar excepciones de SQL
+                Console.WriteLine("Error : " + ex.Message);
+            }
 
-        //    SqlCommand comando = new SqlCommand("SP_CrudMaterias", conexion);
-        //    comando.CommandType = CommandType.StoredProcedure;
-        //    //parametros del procedimiento almacenado
-        //    comando.Parameters.AddWithValue("@intProceso", intProceso);
-        //    comando.Parameters.AddWithValue("@strNombre", Nombre);
-        //    comando.Parameters.AddWithValue("@intId", ID);
-
-        //    try
-        //    {
-        //        conexion.Open();
-        //        comando.ExecuteNonQuery();
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        // Manejar excepciones de SQL
-        //        Console.WriteLine("Error : " + ex.Message);
-        //    }
-
-        //    finally
-        //    {
-        //        conexion.Close();
-        //    }
-        //}
+            finally
+            {
+                conexion.Close();
+            }
+        }
 
 
         public DataSet CargarDatosComboBox(string especialidad, string nombreDocente)

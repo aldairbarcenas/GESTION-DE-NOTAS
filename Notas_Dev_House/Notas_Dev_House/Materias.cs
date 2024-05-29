@@ -19,56 +19,74 @@ namespace Notas_Dev_House
         public Materias()
         {
             InitializeComponent();
-            dataGridView1.DataSource = cn.ConsultarMaterias(1, 888888888); //los 8888888 es para asegurar que se consulte al iiniciar,
-                                                                           //considero que no existira una materia con ese ID aleatorio
+            dataGridView1.DataSource = cn.ConsultarMaterias(1, 888888888);
             CargarDatosComboBox();
-            Especialidad_Combo.SelectedIndexChanged += EspecialidadCombo_SelectedIndexChanged; 
-            //cada vez que hay un cambio en la especialidad se carga la informacion en los combox
+            Especialidad_Combo.SelectedIndexChanged += EspecialidadCombo_SelectedIndexChanged;
+            ConfigurarAutoCompleteEspecialidad();  // Configurar el autocompletado
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+            // Código adicional si es necesario
         }
 
         private void Id_Materias_text_TextChanged(object sender, EventArgs e)
         {
-            
+            // Código adicional si es necesario
         }
 
         private void btn_agregar_Click(object sender, EventArgs e)
         {
-            
+            cn.CrudMaterias(2, 332, txt_materia.Text, Id_docente_text.Text, Convert.ToInt32(GradoCombo.Text));
+            Borrar_Campos();
+            dataGridView1.DataSource = cn.ConsultarMaterias(1, 888888888);
         }
 
-        private void CargarDatosComboBox() //metodo para cargar los datos
+        private void CargarDatosComboBox()
         {
             try
             {
-                isLoading = true; //cambiamos la bandera
+                isLoading = true;
 
                 string especialidad = Especialidad_Combo.Text;
 
-                
+                // Desuscribir el evento para evitar que se dispare durante la actualización
                 Docente_Combo.SelectionChangeCommitted -= NombreDocenteCombo_SelectionChangeCommitted;
-                //quitamos la asociacion al evento cuando selecianmos el docente, para q no se dispare
-                //esto para sacar el ID cada que cambiamos al docente
+
                 DataSet dataSet = cn.CargarDatosComboBox(especialidad, null);
 
-                if (dataSet != null && dataSet.Tables.Count > 0) //si es diferente de null
-                    //y trae al menos una tabla
+                if (dataSet != null && dataSet.Tables.Count > 0)
                 {
+                    // Guardar el índice seleccionado
+                    int selectedEspecialidadIndex = Especialidad_Combo.SelectedIndex;
+
+                    // Limpiar los elementos del ComboBox
+                    Especialidad_Combo.DataSource = null;
+
+                    // Asignar los datos y el miembro de visualización nuevamente
                     Especialidad_Combo.DataSource = dataSet.Tables[0];
                     Especialidad_Combo.DisplayMember = "Especialidad";
+
+                    // Restaurar el índice seleccionado
+                    Especialidad_Combo.SelectedIndex = selectedEspecialidadIndex;
 
                     Docente_Combo.DataSource = dataSet.Tables[1];
                     Docente_Combo.DisplayMember = "NombreCompleto";
 
-                    // Suscribir nuevamente al evento para obtener el ID
+                    // Volver a suscribir el evento
                     Docente_Combo.SelectionChangeCommitted += NombreDocenteCombo_SelectionChangeCommitted;
-                    //este es el ID de grados
+                    Docente_Combo.SelectedIndexChanged += Docente_Combo_SelectedIndexChanged;
+
                     GradoCombo.DataSource = dataSet.Tables[2];
                     GradoCombo.DisplayMember = "Id";
+
+                    // Actualizar el AutoCompleteCustomSource después de cargar los datos
+                    AutoCompleteStringCollection autoCompleteCollection = new AutoCompleteStringCollection();
+                    foreach (DataRow row in dataSet.Tables[0].Rows)
+                    {
+                        autoCompleteCollection.Add(row["Especialidad"].ToString());
+                    }
+                    Especialidad_Combo.AutoCompleteCustomSource = autoCompleteCollection;
                 }
                 else
                 {
@@ -85,14 +103,11 @@ namespace Notas_Dev_House
             }
         }
 
-        // Método para manejar la selección de nombres de docentes
         private void NombreDocenteCombo_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            
-            string nombreDocente = Docente_Combo.Text;            
+            string nombreDocente = Docente_Combo.Text;
             DataSet dataSet = cn.CargarDatosComboBox(Especialidad_Combo.Text, nombreDocente);
 
-            // Mostrar el ID del docente en el TextBox correspondiente
             if (dataSet != null && dataSet.Tables.Count > 0 && dataSet.Tables[3].Rows.Count > 0)
             {
                 string idDocente = dataSet.Tables[3].Rows[0]["Id"].ToString();
@@ -106,15 +121,61 @@ namespace Notas_Dev_House
 
         private void EspecialidadCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (isLoading) return;
+
             CargarDatosComboBox();
+            //Especialidad_Combo.SelectedIndex = 0;
         }
 
         private void Docente_Combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Código adicional si es necesario
+            string nombreDocente = Docente_Combo.Text;
+            DataSet dataSet = cn.CargarDatosComboBox(Especialidad_Combo.Text, nombreDocente);
+
+            if (dataSet != null && dataSet.Tables.Count > 0 && dataSet.Tables[3].Rows.Count > 0)
+            {
+                string idDocente = dataSet.Tables[3].Rows[0]["Id"].ToString();
+                Id_docente_text.Text = idDocente;
+            }
+            else
+            {
+                MessageBox.Show("Error al obtener el ID del docente.");
+            }
         }
 
+        private void ConfigurarAutoCompleteEspecialidad()
+        {
+            // Configurar las propiedades de autocompletado para el ComboBox de especialidad
+            Especialidad_Combo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            Especialidad_Combo.AutoCompleteSource = AutoCompleteSource.CustomSource;
+        }
 
+        private void Borrar_Campos()
+        {
+            Id_Materias_text.Text = string.Empty;
+            txt_materia.Text = string.Empty;
+            Id_docente_text.Text = string.Empty;
+            GradoCombo.Text = string.Empty;
+            Docente_Combo.Text = string.Empty;
+        }
 
+        private void btn_cerrar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        private void btn_eliminar_Click(object sender, EventArgs e)
+        {
+            cn.CrudMaterias(4, Convert.ToInt32(Id_Materias_text.Text), txt_materia.Text, Id_docente_text.Text, Convert.ToInt32(GradoCombo.Text));
+            Borrar_Campos();
+            dataGridView1.DataSource = cn.ConsultarMaterias(1, 888888888);
+        }
+
+        private void btn_modificar_Click(object sender, EventArgs e)
+        {
+            cn.CrudMaterias(3, Convert.ToInt32(Id_Materias_text.Text), txt_materia.Text, Id_docente_text.Text, Convert.ToInt32(GradoCombo.Text));
+            Borrar_Campos();
+            dataGridView1.DataSource = cn.ConsultarMaterias(1, 888888888);
+        }
     }
 }

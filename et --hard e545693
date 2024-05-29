@@ -1,0 +1,87 @@
+[33mcommit e5456931a445488233a05690497f6f568b6c4a19[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mDevelopment[m[33m, [m[1;31morigin/Development[m[33m)[m
+Author: ALDAIR <aldair120894@gmail.com>
+Date:   Mon May 27 23:21:00 2024 -0500
+
+    se agrega los combobox para registrar las materias con la relacion al docente, iddocente, idgrado
+
+[33mcommit 69451b0a2ec40fd39cb1fbb3d74fa61cb3270506[m
+Author: ALDAIR <aldair120894@gmail.com>
+Date:   Sun May 26 19:02:37 2024 -0500
+
+    ya me aburri, mañana terminar poner el ID del docente en un combox asi sea lo primero que se haga y se aegura de que exista
+
+[33mcommit 8190df6cdf2ad1c1f532be93ef886b0858a7e3ff[m
+Author: ALDAIR <aldair120894@gmail.com>
+Date:   Sun May 26 17:03:53 2024 -0500
+
+    visualizacion estudiantes por ID del grado
+
+[33mcommit fff6af5ea4d6cb1d02a2cd69c94ce20e1c0b38b4[m
+Author: ALDAIR <aldair120894@gmail.com>
+Date:   Sun May 26 16:16:23 2024 -0500
+
+    crud grados
+
+[33mcommit 9438bb148edb0e2aa1c8ccf885087f599f6895af[m
+Author: ALDAIR <aldair120894@gmail.com>
+Date:   Sun May 26 14:35:26 2024 -0500
+
+    funcionalidad buscar estudiante por nombre
+
+[33mcommit 74c426231afbae805974d49390f14b35891b2517[m
+Merge: db2dfbe 13f21ee
+Author: ALDAIR <aldair120894@gmail.com>
+Date:   Sun May 26 13:39:31 2024 -0500
+
+    Merge branch 'Development' of https://github.com/aldairbarcenas/GESTION-DE-NOTAS into Development
+
+[33mcommit db2dfbe26f90f26c540e7bf463d5cdf9a6c148b8[m
+Author: ALDAIR <aldair120894@gmail.com>
+Date:   Sun May 26 13:39:29 2024 -0500
+
+    MEJORANDO EL SP
+
+[33mcommit 13f21ee2e847b40fc5cef569cf4951ac187fc46c[m
+Author: aldairbarcenas <111303268+aldairbarcenas@users.noreply.github.com>
+Date:   Sat May 25 18:44:30 2024 -0500
+
+    Update README.md
+
+[33mcommit 15f9f7027580ecfaffb1badd7c70321f35db4746[m
+Author: ALDAIR <aldair120894@gmail.com>
+Date:   Sat May 25 09:56:31 2024 -0500
+
+    aplicando los proecedimientos a gestion de usuario
+
+[33mcommit cdfe190da005f0fb882702df7e6d160b7aa0cb61[m
+Merge: de0b6ff 04bbe02
+Author: ALDAIR <aldair120894@gmail.com>
+Date:   Sat May 25 00:24:45 2024 -0500
+
+    Merge branch 'Development' of https://github.com/aldairbarcenas/GESTION-DE-NOTAS into Development
+
+[33mcommit de0b6ffb5df656e254432baabf1ed3bb31775a73[m
+Author: ALDAIR <aldair120894@gmail.com>
+Date:   Sat May 25 00:19:19 2024 -0500
+
+    FUNCION DAL GESTION USUARIO
+
+[33mcommit 04bbe028819c29d883230a67509f59e844896948[m
+Author: Brayan Alberto Badillo Diaz <52617628+BRAYAN-BADILLO-07@users.noreply.github.com>
+Date:   Fri May 24 23:59:51 2024 -0500
+
+    Update README.md
+    
+    Agregando documentacion del proyecto, descripcion y requerimientos del proyecto.
+
+[33mcommit 94a1ae70a48010aacb07a3baa92dd4f7eadd85fa[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: ALDAIR <aldair120894@gmail.com>
+Date:   Fri May 24 23:22:30 2024 -0500
+
+    creado proyectos y gestion de usuarios
+
+[33mcommit fedb85c7879b9d01335e8b68f16947f6d09b31dc[m
+Author: aldairbarcenas <111303268+aldairbarcenas@users.noreply.github.com>
+Date:   Fri May 24 22:54:41 2024 -0500
+
+    Initial commit
