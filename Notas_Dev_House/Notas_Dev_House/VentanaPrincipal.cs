@@ -46,5 +46,13 @@ namespace Notas_Dev_House
             materias.ShowDialog();
             this.Show();
         }
+
+        private void notasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            RegistroNotas notas = new RegistroNotas();
+            notas.ShowDialog();
+            this.Show();
+        }
     }
 }

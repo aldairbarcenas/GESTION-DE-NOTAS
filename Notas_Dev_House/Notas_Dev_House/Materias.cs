@@ -53,12 +53,12 @@ namespace Notas_Dev_House
                 // Desuscribir el evento para evitar que se dispare durante la actualización
                 Docente_Combo.SelectionChangeCommitted -= NombreDocenteCombo_SelectionChangeCommitted;
 
-                DataSet dataSet = cn.CargarDatosComboBox(especialidad, null);
+                DataSet dataSet = cn.CargarDatosComboBox(especialidad, null, 1,1);
 
                 if (dataSet != null && dataSet.Tables.Count > 0)
                 {
                     // Guardar el índice seleccionado
-                    int selectedEspecialidadIndex = Especialidad_Combo.SelectedIndex;
+                    int selectedEspecialidadIndex = Especialidad_Combo.SelectedIndex; //para que cambie
 
                     // Limpiar los elementos del ComboBox
                     Especialidad_Combo.DataSource = null;
@@ -106,7 +106,7 @@ namespace Notas_Dev_House
         private void NombreDocenteCombo_SelectionChangeCommitted(object sender, EventArgs e)
         {
             string nombreDocente = Docente_Combo.Text;
-            DataSet dataSet = cn.CargarDatosComboBox(Especialidad_Combo.Text, nombreDocente);
+            DataSet dataSet = cn.CargarDatosComboBox(Especialidad_Combo.Text, nombreDocente,1,1);
 
             if (dataSet != null && dataSet.Tables.Count > 0 && dataSet.Tables[3].Rows.Count > 0)
             {
@@ -124,13 +124,13 @@ namespace Notas_Dev_House
             if (isLoading) return;
 
             CargarDatosComboBox();
-            //Especialidad_Combo.SelectedIndex = 0;
+            
         }
 
         private void Docente_Combo_SelectedIndexChanged(object sender, EventArgs e)
         {
             string nombreDocente = Docente_Combo.Text;
-            DataSet dataSet = cn.CargarDatosComboBox(Especialidad_Combo.Text, nombreDocente);
+            DataSet dataSet = cn.CargarDatosComboBox(Especialidad_Combo.Text, nombreDocente, 1, 1   );
 
             if (dataSet != null && dataSet.Tables.Count > 0 && dataSet.Tables[3].Rows.Count > 0)
             {

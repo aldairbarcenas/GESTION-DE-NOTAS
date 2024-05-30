@@ -16,10 +16,10 @@ namespace BLL
 
 
 
-        public void CrudEstudiante(int intProceso, string ID, string nombres, string apellidos, DateTime FechaNacimiento, string direccion, string telefono)
+        public void CrudEstudiante(int intProceso, string ID, string nombres, string apellidos, DateTime FechaNacimiento, string direccion, string telefono, int grado)
 
         {
-            cn.CrudEstudiante(intProceso, ID, nombres, apellidos, FechaNacimiento, direccion, telefono);
+            cn.CrudEstudiante(intProceso, ID, nombres, apellidos, FechaNacimiento, direccion, telefono,grado);
 
 
         }
@@ -63,9 +63,9 @@ namespace BLL
 
         }
 
-        public DataSet CargarDatosComboBox(string especialidad, string nombreDocente)
+        public DataSet CargarDatosComboBox(string especialidad, string nombreDocente, int grado , int periodo)
         {
-            return cn.CargarDatosComboBox(especialidad, nombreDocente);
+            return cn.CargarDatosComboBox(especialidad, nombreDocente,grado,periodo);
 
 
         }

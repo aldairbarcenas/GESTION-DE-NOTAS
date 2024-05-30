@@ -57,7 +57,7 @@ namespace DAL
         }
 
 
-        public void CrudEstudiante(int intProceso, string ID, string nombres, string apellidos, DateTime FechaNacimiento, string direccion, string telefono)
+        public void CrudEstudiante(int intProceso, string ID, string nombres, string apellidos, DateTime FechaNacimiento, string direccion, string telefono , int grado)
         
         {                   
                 
@@ -71,7 +71,8 @@ namespace DAL
 
                 comando.Parameters.AddWithValue("@dateFechaNacimiento", FechaNacimiento.Date);
                 comando.Parameters.AddWithValue("@strDireccion", direccion);
-                comando.Parameters.AddWithValue("@strTelefono", telefono);             
+                comando.Parameters.AddWithValue("@strTelefono", telefono);
+                comando.Parameters.AddWithValue("@IntGrado", grado);
 
             try
             {
@@ -261,7 +262,7 @@ namespace DAL
         }
 
 
-        public DataSet CargarDatosComboBox(string especialidad, string nombreDocente)
+        public DataSet CargarDatosComboBox(string especialidad, string nombreDocente, int grado, int periodo)
         {
             DataSet dataSet = new DataSet();
 
@@ -273,6 +274,8 @@ namespace DAL
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@Especialidad", especialidad);
                 command.Parameters.AddWithValue("@NombreDocente", nombreDocente);
+                command.Parameters.AddWithValue("@Grado", grado);
+                command.Parameters.AddWithValue("@IdPeriodo", periodo);
 
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 adapter.Fill(dataSet);
