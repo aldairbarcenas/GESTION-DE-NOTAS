@@ -63,9 +63,9 @@ namespace BLL
 
         }
 
-        public DataSet CargarDatosComboBox(string especialidad, string nombreDocente, int grado , int periodo)
+        public DataSet CargarDatosComboBox(string especialidad, string nombreDocente, int grado , int periodo, string estudiante)
         {
-            return cn.CargarDatosComboBox(especialidad, nombreDocente,grado,periodo);
+            return cn.CargarDatosComboBox(especialidad, nombreDocente,grado,periodo, estudiante);
 
 
         }

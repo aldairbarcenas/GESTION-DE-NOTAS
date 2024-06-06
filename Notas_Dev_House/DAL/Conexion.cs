@@ -12,8 +12,11 @@ namespace DAL
 {
     public class Conexion
     {
-        static string conexionstring = "server=sql.holamundodevs.com; database=AldairDouglasLizeth_NotasDB;" +
-        "User Id=erickbarcerna; Password=Holamundo123*";
+        //static string conexionstring = "server=sql.holamundodevs.com; database=AldairDouglasLizeth_NotasDB;" +
+        //"User Id=erickbarcerna; Password=Holamundo123*";
+        static string conexionstring = "server=108.181.184.38; database=AldairDouglasLizeth_NotasDB;" +
+       "User Id=erickbarcerna; Password=Holamundo123*";
+
         SqlConnection conexion = new SqlConnection(conexionstring);
 
 
@@ -262,7 +265,7 @@ namespace DAL
         }
 
 
-        public DataSet CargarDatosComboBox(string especialidad, string nombreDocente, int grado, int periodo)
+        public DataSet CargarDatosComboBox(string especialidad, string nombreDocente, int grado, int periodo, string estudiante)
         {
             DataSet dataSet = new DataSet();
 
@@ -276,6 +279,7 @@ namespace DAL
                 command.Parameters.AddWithValue("@NombreDocente", nombreDocente);
                 command.Parameters.AddWithValue("@Grado", grado);
                 command.Parameters.AddWithValue("@IdPeriodo", periodo);
+                command.Parameters.AddWithValue("@NombreEstudiante", estudiante);
 
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 adapter.Fill(dataSet);

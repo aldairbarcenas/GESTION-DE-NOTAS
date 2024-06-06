@@ -54,5 +54,13 @@ namespace Notas_Dev_House
             notas.ShowDialog();
             this.Show();
         }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Usuarios user = new Usuarios();
+            user.ShowDialog();
+            this.Show();
+        }
     }
 }
