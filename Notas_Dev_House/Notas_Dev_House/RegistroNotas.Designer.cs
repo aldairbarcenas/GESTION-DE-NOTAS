@@ -48,6 +48,11 @@
             this.btn_agregar = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.txt_ID_Estudiante = new System.Windows.Forms.TextBox();
+            this.IdMateria_text = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,6 +103,7 @@
             this.ComboMaterias.Name = "ComboMaterias";
             this.ComboMaterias.Size = new System.Drawing.Size(121, 24);
             this.ComboMaterias.TabIndex = 4;
+            this.ComboMaterias.SelectedIndexChanged += new System.EventHandler(this.CambiarMateria);
             // 
             // label1
             // 
@@ -154,7 +160,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(270, 385);
+            this.label6.Location = new System.Drawing.Point(220, 388);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 16);
             this.label6.TabIndex = 12;
@@ -162,7 +168,7 @@
             // 
             // nota2
             // 
-            this.nota2.Location = new System.Drawing.Point(321, 385);
+            this.nota2.Location = new System.Drawing.Point(271, 388);
             this.nota2.Name = "nota2";
             this.nota2.Size = new System.Drawing.Size(100, 22);
             this.nota2.TabIndex = 11;
@@ -170,7 +176,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(489, 379);
+            this.label7.Location = new System.Drawing.Point(397, 388);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(49, 16);
             this.label7.TabIndex = 14;
@@ -178,7 +184,7 @@
             // 
             // nota3
             // 
-            this.nota3.Location = new System.Drawing.Point(540, 379);
+            this.nota3.Location = new System.Drawing.Point(448, 388);
             this.nota3.Name = "nota3";
             this.nota3.Size = new System.Drawing.Size(100, 22);
             this.nota3.TabIndex = 13;
@@ -223,14 +229,64 @@
             // 
             this.txt_ID_Estudiante.Location = new System.Drawing.Point(334, 324);
             this.txt_ID_Estudiante.Name = "txt_ID_Estudiante";
+            this.txt_ID_Estudiante.ReadOnly = true;
             this.txt_ID_Estudiante.Size = new System.Drawing.Size(100, 22);
             this.txt_ID_Estudiante.TabIndex = 0;
+            // 
+            // IdMateria_text
+            // 
+            this.IdMateria_text.Location = new System.Drawing.Point(638, 388);
+            this.IdMateria_text.Name = "IdMateria_text";
+            this.IdMateria_text.ReadOnly = true;
+            this.IdMateria_text.Size = new System.Drawing.Size(100, 22);
+            this.IdMateria_text.TabIndex = 21;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(635, 357);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(71, 16);
+            this.label10.TabIndex = 22;
+            this.label10.Text = "ID Materia:";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(182, 533);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(101, 56);
+            this.button1.TabIndex = 23;
+            this.button1.Text = "MODIFICAR";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(319, 533);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(101, 56);
+            this.button2.TabIndex = 24;
+            this.button2.Text = "ELMINAR";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(658, 533);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(101, 56);
+            this.button3.TabIndex = 25;
+            this.button3.Text = "CERRAR";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // RegistroNotas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(822, 611);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.IdMateria_text);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.txt_ID_Estudiante);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.btn_agregar);
@@ -281,5 +337,10 @@
         private System.Windows.Forms.Button btn_agregar;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txt_ID_Estudiante;
+        private System.Windows.Forms.TextBox IdMateria_text;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }

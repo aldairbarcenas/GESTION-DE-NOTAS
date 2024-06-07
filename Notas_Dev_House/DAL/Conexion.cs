@@ -265,7 +265,8 @@ namespace DAL
         }
 
 
-        public DataSet CargarDatosComboBox(string especialidad, string nombreDocente, int grado, int periodo, string estudiante)
+        public DataSet CargarDatosComboBox(string especialidad, string nombreDocente, int grado, int periodo, 
+            string estudiante, string NombreMateria)
         {
             DataSet dataSet = new DataSet();
 
@@ -280,6 +281,7 @@ namespace DAL
                 command.Parameters.AddWithValue("@Grado", grado);
                 command.Parameters.AddWithValue("@IdPeriodo", periodo);
                 command.Parameters.AddWithValue("@NombreEstudiante", estudiante);
+                command.Parameters.AddWithValue("@NombreMateria", NombreMateria);
 
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 adapter.Fill(dataSet);
