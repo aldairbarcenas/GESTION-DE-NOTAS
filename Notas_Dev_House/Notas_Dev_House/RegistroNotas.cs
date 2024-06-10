@@ -13,26 +13,26 @@ namespace Notas_Dev_House
 {
     public partial class RegistroNotas : Form
     {
-        
-        NegocioSql cn = new NegocioSql();       
+
+        NegocioSql cn = new NegocioSql();
         private bool cambiogrado = false;
         private bool cambiamateria = false;
         private bool cambiaestudiante = false;
 
         public RegistroNotas()
         {
-           
+
             InitializeComponent();
 
             // Cargar los datos iniciales del ComboBox Grado           
-           
-                DataSet dataSet = cn.CargarDatosComboBox(null, null, 1, 1, "null", "null");
-                ComboGrado.DataSource = dataSet.Tables[2];
-                ComboGrado.DisplayMember = "Id";
-                ComboPeriodo.DataSource = dataSet.Tables[5];
-                ComboPeriodo.DisplayMember = "Id";
-                ComboGrado.SelectedIndex = -1;       
-           
+            dataGridView1.DataSource = cn.ConsultarNotas(1, ComboEstudiante.Text, 243543669);
+            DataSet dataSet = cn.CargarDatosComboBox(null, null, 1, 1, "null", "null");
+            ComboGrado.DataSource = dataSet.Tables[2];
+            ComboGrado.DisplayMember = "Id";
+            ComboPeriodo.DataSource = dataSet.Tables[5];
+            ComboPeriodo.DisplayMember = "Id";
+            ComboGrado.SelectedIndex = -1;
+
 
         }
 
@@ -41,10 +41,10 @@ namespace Notas_Dev_House
 
         }
 
-        
-    private void Seleccionar_Grado(object sender, EventArgs e) //cuando cambia por click
+
+        private void Seleccionar_Grado(object sender, EventArgs e) //cuando cambia por click
         {
-            
+
 
 
 
@@ -52,32 +52,32 @@ namespace Notas_Dev_House
 
         private void CambiaEstudiante(object sender, EventArgs e) //cuando cambia por codigo
         {
-            
+
 
         }
 
         private void Cambiar_Index_Grado(object sender, EventArgs e) //index grado
         {
-            ComboMaterias.Text= string.Empty;
+            ComboMaterias.Text = string.Empty;
             //ComboGrado.Text= string.Empty;
-            ComboPeriodo.Text= string.Empty;
-            ComboEstudiante.Text= string.Empty;
-            IdMateria_text.Text= string.Empty;
-            txt_ID_Estudiante.Text= string.Empty;
+            ComboPeriodo.Text = string.Empty;
+            ComboEstudiante.Text = string.Empty;
+            IdMateria_text.Text = string.Empty;
+            txt_ID_Estudiante.Text = string.Empty;
 
-           
-                if (int.TryParse(ComboGrado.Text, out int grado) ) //convertimos lo que hay en grado en entetero
-                                                                  //si se realiza correctamente sale un true
-                {
 
-                    DataSet dataSet = cn.CargarDatosComboBox(null, null, grado, 1, "sssss", "null"); //cargamos el combobox aun no escojemos nombre de estudiante
-                    
-                    
-                   
-                    
+            if (int.TryParse(ComboGrado.Text, out int grado)) //convertimos lo que hay en grado en entetero
+                                                              //si se realiza correctamente sale un true
+            {
 
-                    //mandamos el nombre del estudiante que trajo automatico al seleccionar un grado                                        
-                    DataSet dataSet1 = cn.CargarDatosComboBox(null, null, grado, 1, ComboEstudiante.Text, ComboMaterias.Text); //cargamos el combobox
+                DataSet dataSet = cn.CargarDatosComboBox(null, null, grado, 1, "sssss", "null"); //cargamos el combobox aun no escojemos nombre de estudiante
+
+
+
+
+
+                //mandamos el nombre del estudiante que trajo automatico al seleccionar un grado                                        
+                DataSet dataSet1 = cn.CargarDatosComboBox(null, null, grado, 1, ComboEstudiante.Text, ComboMaterias.Text); //cargamos el combobox
 
                 if (dataSet1.Tables[4].Rows.Count > 0)
                 {
@@ -100,7 +100,7 @@ namespace Notas_Dev_House
                     ComboPeriodo.DataSource = dataSet.Tables[5];
                     ComboPeriodo.DisplayMember = "Id";
                 }
-               
+
 
                 if (dataSet1.Tables[6].Rows.Count > 0)
                 {
@@ -115,7 +115,7 @@ namespace Notas_Dev_House
                     cambiamateria = false;
                     ComboMaterias.DataSource = null;
                     ComboMaterias.Items.Clear();
-                   
+
                 }
 
                 if (dataSet1.Tables[7].Rows.Count > 0)
@@ -131,24 +131,24 @@ namespace Notas_Dev_House
                     IdMateria_text.Text = idMateria;
                 }
 
-                    
 
-             
 
-                    string quemateriaes = ComboMaterias.Text;
-                    
+
+
+                string quemateriaes = ComboMaterias.Text;
+
 
                 cambiogrado = true; //aseguramos que entre aqui primero
 
-                }
-                             
-            
+            }
+
+
 
         }
 
         private void ValidarConsulta(DataSet dataset1)
         {
-            
+
 
 
 
@@ -158,22 +158,38 @@ namespace Notas_Dev_House
         private void CambiaEstudianteIndex(object sender, EventArgs e) //afadifaiduhfpiaudhfdpuifhapiudafhipd
         {
 
-           
-            if ( cambiogrado==true && cambiaestudiante==true) 
+
+            if (cambiogrado == true && cambiaestudiante == true)
             {
+
                 int grado = Convert.ToInt32(ComboGrado.Text);
                 DataSet dataSet = cn.CargarDatosComboBox(null, null, grado, 1, ComboEstudiante.Text, ComboMaterias.Text); //cargamos el combobox
                 string idEstudiante = dataSet.Tables[7].Rows[0]["ID"].ToString();
                 txt_ID_Estudiante.Text = idEstudiante;
-                
+                string IdMateria = IdMateria_text.Text;
+                if (string.IsNullOrEmpty(IdMateria))
+                {
+                    IdMateria = "989898";
+                    dataGridView1.DataSource = cn.ConsultarNotas(1, idEstudiante, Convert.ToInt32(IdMateria));
+                }
+
+                else
+                {
+                    dataGridView1.DataSource = cn.ConsultarNotas(1, idEstudiante, Convert.ToInt32(IdMateria));
+                }
+
+
+
             }
 
-            
+
         }
 
         private void btn_agregar_Click(object sender, EventArgs e)
         {
-
+            cn.CrudNotas(2, txt_ID_Estudiante.Text, Convert.ToInt32(IdMateria_text.Text), Convert.ToDouble(nota1.Text),
+                Convert.ToDouble(nota2.Text), Convert.ToDouble(nota3.Text), observacion.Text, Convert.ToInt32(ComboPeriodo.Text), 0);
+            dataGridView1.DataSource = cn.ConsultarNotas(1, "", 243543669);
         }
 
         private void ComboPeriodo_SelectedIndexChanged(object sender, EventArgs e)
@@ -183,21 +199,41 @@ namespace Notas_Dev_House
 
         private void ClickEstudiante(object sender, EventArgs e)
         {
-            
+
         }
 
         private void CambiarMateria(object sender, EventArgs e)
         {
 
-            if (cambiogrado == true && cambiamateria==true)
+            if (cambiogrado == true && cambiamateria == true)
             {
+
                 int grado = Convert.ToInt32(ComboGrado.Text);
                 DataSet dataSet = cn.CargarDatosComboBox(null, null, grado, 1, ComboEstudiante.Text, ComboMaterias.Text); //cargamos el combobox
-                
+
 
                 string idMateria = dataSet.Tables[8].Rows[0]["Id"].ToString();
                 IdMateria_text.Text = idMateria;
+                int intmateria = Convert.ToInt32(idMateria);
+
+
+                dataGridView1.DataSource = cn.ConsultarNotas(1, txt_ID_Estudiante.Text, intmateria);
             }
+
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        private void button1_Click(object sender, EventArgs e) //modificar
+        {
+            cn.CrudNotas(3, txt_ID_Estudiante.Text, Convert.ToInt32(IdMateria_text.Text), Convert.ToDouble(nota1.Text),
+               Convert.ToDouble(nota2.Text), Convert.ToDouble(nota3.Text), observacion.Text, Convert.ToInt32(ComboPeriodo.Text), 0);
+            dataGridView1.DataSource = cn.ConsultarNotas(1, "", 243543669);
+
 
 
         }

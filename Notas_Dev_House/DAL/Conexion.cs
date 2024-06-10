@@ -299,7 +299,92 @@ namespace DAL
             return dataSet;
         }
 
+        public DataTable ConsultarNotas(int intProceso, string EstudianteId, int MateriaId)
+        {
 
+            try
+            {
+                conexion.Open();
+
+                SqlCommand comando = new SqlCommand("SP_CrudNotas", conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@intProceso", intProceso);
+
+                if (string.IsNullOrEmpty(EstudianteId))
+                {
+                    comando.Parameters.AddWithValue("@strEstudianteId", DBNull.Value);
+                }
+                else
+                {
+                    comando.Parameters.AddWithValue("@strEstudianteId", EstudianteId);
+                }
+
+
+                if (string.IsNullOrEmpty(Convert.ToString(MateriaId)))
+                {
+                    comando.Parameters.AddWithValue("@intMateriaId", DBNull.Value);
+                }
+                else
+                {
+                    comando.Parameters.AddWithValue("@intMateriaId", MateriaId);
+                }
+
+
+
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable tabla = new DataTable();
+                data.Fill(tabla);
+                conexion.Close();
+                return tabla;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+        }
+
+
+
+        public void CrudNotas(int intProceso, string EstudianteId, int MateriaId, double Nota1, double Nota2, double Nota3, string Observacion, int Periodo, int SuperUsuario)
+
+        {
+
+            SqlCommand comando = new SqlCommand("SP_CrudNotas", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+            //parametros del procedimiento almacenado
+            comando.Parameters.AddWithValue("@intProceso", intProceso);
+            comando.Parameters.AddWithValue("@strEstudianteId", EstudianteId);
+            comando.Parameters.AddWithValue("@intMateriaId", MateriaId);
+            comando.Parameters.AddWithValue("@decNota1", Nota1);
+            comando.Parameters.AddWithValue("@decNota2", Nota2);
+            comando.Parameters.AddWithValue("@decNota3", Nota3);
+            comando.Parameters.AddWithValue("@strObservacion", Observacion);
+            comando.Parameters.AddWithValue("@intPeriodo", Periodo);
+            comando.Parameters.AddWithValue("@bitSuperUsuario", SuperUsuario);
+
+
+
+
+            try
+            {
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                // Manejar excepciones de SQL
+                Console.WriteLine("Error : " + ex.Message);
+            }
+
+            finally
+            {
+                conexion.Close();
+            }
+        }
 
 
     }

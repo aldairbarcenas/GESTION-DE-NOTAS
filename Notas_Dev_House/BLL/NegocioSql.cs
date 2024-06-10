@@ -76,6 +76,24 @@ namespace BLL
             cn.CrudMaterias(intProceso, ID, nombre, docenteId, gradoId);
 
         }
+
+        public DataTable ConsultarNotas(int intProceso, string EstudianteId, int MateriaId)
+        {
+
+            return cn.ConsultarNotas(intProceso, EstudianteId, MateriaId);
+        }
+
+
+
+        public void CrudNotas(int intProceso, string EstudianteId, int MateriaId, double Nota1, double Nota2, double Nota3, string Observacion, int Periodo, int SuperUsuario)
+
+        {
+
+            cn.CrudNotas(intProceso, EstudianteId, MateriaId, Nota1, Nota2, Nota3, Observacion, Periodo, SuperUsuario);
+
+
+        }
+
     }
 }
 
