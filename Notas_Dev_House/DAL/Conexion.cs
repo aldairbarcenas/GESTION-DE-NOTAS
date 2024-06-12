@@ -14,7 +14,7 @@ namespace DAL
     {
         //static string conexionstring = "server=sql.holamundodevs.com; database=AldairDouglasLizeth_NotasDB;" +
         //"User Id=erickbarcerna; Password=Holamundo123*";
-        static string conexionstring = "server=108.181.184.38; database=AldairDouglasLizeth_NotasDB;" +
+        static string conexionstring = "server=sql.hmdevs.com; database=AldairDouglasLizeth_NotasDB;" +
        "User Id=erickbarcerna; Password=Holamundo123*";
 
         SqlConnection conexion = new SqlConnection(conexionstring);
@@ -72,7 +72,7 @@ namespace DAL
                 comando.Parameters.AddWithValue("@strNombres", nombres);
                 comando.Parameters.AddWithValue("@strApellidos", apellidos);
 
-                comando.Parameters.AddWithValue("@dateFechaNacimiento", FechaNacimiento.Date);
+                comando.Parameters.AddWithValue("@dateFechaNacimiento", FechaNacimiento);
                 comando.Parameters.AddWithValue("@strDireccion", direccion);
                 comando.Parameters.AddWithValue("@strTelefono", telefono);
                 comando.Parameters.AddWithValue("@IntGrado", grado);
@@ -385,6 +385,90 @@ namespace DAL
                 conexion.Close();
             }
         }
+
+        /// USUARIOS
+        public DataTable ConsultarUsuarios(int intProceso, string IdUsuario)
+        {
+
+            try
+            {
+                conexion.Open();
+
+                SqlCommand comando = new SqlCommand("SP_CrudUsuarios", conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@intProceso", intProceso);
+
+                if (string.IsNullOrEmpty(IdUsuario))
+                {
+                    comando.Parameters.AddWithValue("@IdUsuario", DBNull.Value);
+                }
+                else
+                {
+                    comando.Parameters.AddWithValue("@IdUsuario", IdUsuario);
+                }
+                               
+
+
+
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable tabla = new DataTable();
+                data.Fill(tabla);
+                conexion.Close();
+                return tabla;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+        }
+
+        //public int CrudUsuarios(int intProceso, string IdUsuario, string NombreUsuario, string pass)
+        //{
+        //    try
+        //    {
+        //        int resultado = 0; // Variable para almacenar el resultado del procedimiento almacenado
+
+        //        SqlCommand comando = new SqlCommand("SP_CrudUsuarios", conexion);
+        //        comando.CommandType = CommandType.StoredProcedure;
+
+        //        // Parámetros del procedimiento almacenado
+        //        comando.Parameters.AddWithValue("@intProceso", intProceso);
+        //        comando.Parameters.AddWithValue("@IdUsuario", IdUsuario);
+        //        comando.Parameters.AddWithValue("@NombreUsuario", NombreUsuario);
+        //        comando.Parameters.AddWithValue("@Contrasena", pass);
+
+        //        // Parámetro de salida para el resultado del procedimiento almacenado
+        //        SqlParameter paramResultado = new SqlParameter("@resultado", SqlDbType.Int);
+        //        paramResultado.Direction = ParameterDirection.Output;
+        //        comando.Parameters.Add(paramResultado);
+
+        //        conexion.Open();
+        //        comando.ExecuteNonQuery();
+
+        //        // Recuperar el valor de salida del procedimiento almacenado
+        //        resultado = Convert.ToInt32(paramResultado.Value);
+
+        //        // Retornar el resultado del procedimiento almacenado
+        //        return resultado;
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        // Manejar excepciones de SQL
+        //        Console.WriteLine("Error: " + ex.Message);
+        //        // Retornar un código de error                
+
+        //    }
+        //    finally
+        //    {
+        //        conexion.Close();
+        //    }
+        //}
+
+
 
 
     }

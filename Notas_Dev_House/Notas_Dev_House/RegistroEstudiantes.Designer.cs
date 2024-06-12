@@ -36,7 +36,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.id_txt = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.fecha_nacimiento_txt = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.direccion_txt = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -50,6 +49,7 @@
             this.buscador_id_text = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.grado_txt = new System.Windows.Forms.TextBox();
+            this.FechaNacimiento = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -127,14 +127,6 @@
             this.label4.Size = new System.Drawing.Size(132, 16);
             this.label4.TabIndex = 8;
             this.label4.Text = "Fecha de nacimiento";
-            // 
-            // fecha_nacimiento_txt
-            // 
-            this.fecha_nacimiento_txt.Location = new System.Drawing.Point(712, 434);
-            this.fecha_nacimiento_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.fecha_nacimiento_txt.Name = "fecha_nacimiento_txt";
-            this.fecha_nacimiento_txt.Size = new System.Drawing.Size(189, 22);
-            this.fecha_nacimiento_txt.TabIndex = 7;
             // 
             // label5
             // 
@@ -263,11 +255,20 @@
             this.grado_txt.Size = new System.Drawing.Size(189, 22);
             this.grado_txt.TabIndex = 20;
             // 
+            // FechaNacimiento
+            // 
+            this.FechaNacimiento.Location = new System.Drawing.Point(703, 434);
+            this.FechaNacimiento.Name = "FechaNacimiento";
+            this.FechaNacimiento.Size = new System.Drawing.Size(200, 22);
+            this.FechaNacimiento.TabIndex = 22;
+            this.FechaNacimiento.Value = new System.DateTime(2024, 6, 11, 21, 32, 29, 0);
+            // 
             // RegistroEstudiantes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1209, 679);
+            this.Controls.Add(this.FechaNacimiento);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.grado_txt);
             this.Controls.Add(this.label7);
@@ -282,7 +283,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.direccion_txt);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.fecha_nacimiento_txt);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.id_txt);
             this.Controls.Add(this.label2);
@@ -309,7 +309,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox id_txt;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox fecha_nacimiento_txt;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox direccion_txt;
         private System.Windows.Forms.Label label6;
@@ -323,5 +322,6 @@
         private System.Windows.Forms.TextBox buscador_id_text;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox grado_txt;
+        private System.Windows.Forms.DateTimePicker FechaNacimiento;
     }
 }

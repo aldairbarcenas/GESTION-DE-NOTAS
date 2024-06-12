@@ -30,14 +30,15 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.IdUsuario = new System.Windows.Forms.TextBox();
+            this.Usuario = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.Contra = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.Superusuario = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.btn_Cerrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,10 +47,12 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(14, 12);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(774, 257);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // label1
             // 
@@ -60,19 +63,19 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "ID Usuario:";
             // 
-            // textBox1
+            // IdUsuario
             // 
-            this.textBox1.Location = new System.Drawing.Point(36, 353);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(124, 22);
-            this.textBox1.TabIndex = 2;
+            this.IdUsuario.Location = new System.Drawing.Point(36, 353);
+            this.IdUsuario.Name = "IdUsuario";
+            this.IdUsuario.Size = new System.Drawing.Size(124, 22);
+            this.IdUsuario.TabIndex = 2;
             // 
-            // textBox2
+            // Usuario
             // 
-            this.textBox2.Location = new System.Drawing.Point(202, 353);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(124, 22);
-            this.textBox2.TabIndex = 4;
+            this.Usuario.Location = new System.Drawing.Point(202, 353);
+            this.Usuario.Name = "Usuario";
+            this.Usuario.Size = new System.Drawing.Size(124, 22);
+            this.Usuario.TabIndex = 4;
             // 
             // label2
             // 
@@ -83,12 +86,12 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Usuario:";
             // 
-            // textBox3
+            // Contra
             // 
-            this.textBox3.Location = new System.Drawing.Point(377, 353);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(124, 22);
-            this.textBox3.TabIndex = 6;
+            this.Contra.Location = new System.Drawing.Point(377, 353);
+            this.Contra.Name = "Contra";
+            this.Contra.Size = new System.Drawing.Size(124, 22);
+            this.Contra.TabIndex = 6;
             // 
             // label3
             // 
@@ -108,17 +111,17 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "SuperUsuario??";
             // 
-            // comboBox1
+            // Superusuario
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.Superusuario.FormattingEnabled = true;
+            this.Superusuario.Items.AddRange(new object[] {
             "NO",
             "SI"});
-            this.comboBox1.Location = new System.Drawing.Point(545, 353);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 8;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.Superusuario.Location = new System.Drawing.Point(545, 353);
+            this.Superusuario.Name = "Superusuario";
+            this.Superusuario.Size = new System.Drawing.Size(121, 24);
+            this.Superusuario.TabIndex = 8;
+            this.Superusuario.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // button1
             // 
@@ -129,19 +132,30 @@
             this.button1.Text = "AGREGAR";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // btn_Cerrar
+            // 
+            this.btn_Cerrar.Location = new System.Drawing.Point(614, 395);
+            this.btn_Cerrar.Name = "btn_Cerrar";
+            this.btn_Cerrar.Size = new System.Drawing.Size(103, 53);
+            this.btn_Cerrar.TabIndex = 10;
+            this.btn_Cerrar.Text = "CERRAR";
+            this.btn_Cerrar.UseVisualStyleBackColor = true;
+            this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click);
+            // 
             // Usuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(825, 478);
+            this.Controls.Add(this.btn_Cerrar);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.Superusuario);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.Contra);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.Usuario);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.IdUsuario);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Usuarios";
@@ -156,13 +170,14 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox IdUsuario;
+        private System.Windows.Forms.TextBox Usuario;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox Contra;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox Superusuario;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_Cerrar;
     }
 }

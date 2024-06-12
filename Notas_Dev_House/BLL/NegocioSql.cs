@@ -13,13 +13,12 @@ namespace BLL
     public class NegocioSql
     {
         Conexion cn = new Conexion();
-
-
+        
 
         public void CrudEstudiante(int intProceso, string ID, string nombres, string apellidos, DateTime FechaNacimiento, string direccion, string telefono, int grado)
 
         {
-            cn.CrudEstudiante(intProceso, ID, nombres, apellidos, FechaNacimiento, direccion, telefono,grado);
+            cn.CrudEstudiante(intProceso, ID, nombres, apellidos, FechaNacimiento, direccion, telefono, grado);
 
 
         }
@@ -63,9 +62,9 @@ namespace BLL
 
         }
 
-        public DataSet CargarDatosComboBox(string especialidad, string nombreDocente, int grado , int periodo, string estudiante, string materia)
+        public DataSet CargarDatosComboBox(string especialidad, string nombreDocente, int grado, int periodo, string estudiante, string materia)
         {
-            return cn.CargarDatosComboBox(especialidad, nombreDocente,grado,periodo, estudiante, materia);
+            return cn.CargarDatosComboBox(especialidad, nombreDocente, grado, periodo, estudiante, materia);
 
 
         }
@@ -94,6 +93,14 @@ namespace BLL
 
         }
 
+        public DataTable ConsultarUsuarios(int intProceso, string IdUsuario)
+        {
+            return cn.ConsultarUsuarios(intProceso, IdUsuario);
+        }
+        //public int CrudUsuarios(int intProceso, string IdUsuario, string NombreUsuario, string pass)
+        //{
+        //    return cn.CrudUsuarios(intProceso, IdUsuario, NombreUsuario, pass);
+        //}
     }
 }
 

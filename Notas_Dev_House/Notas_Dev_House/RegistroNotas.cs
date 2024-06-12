@@ -237,5 +237,17 @@ namespace Notas_Dev_House
 
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            cn.CrudNotas(4, txt_ID_Estudiante.Text, Convert.ToInt32(IdMateria_text.Text), Convert.ToDouble("0"),
+               Convert.ToDouble("0"), Convert.ToDouble("0"), observacion.Text, Convert.ToInt32(ComboPeriodo.Text), 0);
+            dataGridView1.DataSource = cn.ConsultarNotas(1, "", 243543669);
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }
