@@ -194,7 +194,7 @@ namespace DAL
         /////////////////////////////////// MATERIAS //////////////////////////////////////
         ///
 
-        public DataTable ConsultarMaterias(int intProceso, int ID)
+        public DataTable ConsultarMaterias(int intProceso, string ID)
         {
 
             try
@@ -205,14 +205,13 @@ namespace DAL
                 comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.AddWithValue("@intProceso", intProceso);
 
-                if (ID == 888888888)
-                {
-                    comando.Parameters.AddWithValue("@intId", DBNull.Value);
-                }
-                else
-                {
+               
+                    
+                
+                
+                
                     comando.Parameters.AddWithValue("@intId", ID);
-                }
+                
 
                 SqlDataAdapter data = new SqlDataAdapter(comando);
                 DataTable tabla = new DataTable();
@@ -231,7 +230,7 @@ namespace DAL
         }
 
 
-        public void CrudMaterias(int intProceso, int ID, string nombre, string docenteId, int gradoId)
+        public void CrudMaterias(int intProceso, string ID, string nombre, string docenteId,string NombreDocente, int gradoId)
 
         {
 
@@ -242,6 +241,7 @@ namespace DAL
             comando.Parameters.AddWithValue("@IntId", ID);
             comando.Parameters.AddWithValue("@strNombre", nombre);            
             comando.Parameters.AddWithValue("@strDocenteId ", docenteId);
+            comando.Parameters.AddWithValue("@NombreDocente", NombreDocente);
             comando.Parameters.AddWithValue("@intGradoId", gradoId);
 
 

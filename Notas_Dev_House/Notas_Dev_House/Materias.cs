@@ -19,7 +19,7 @@ namespace Notas_Dev_House
         public Materias()
         {
             InitializeComponent();
-            dataGridView1.DataSource = cn.ConsultarMaterias(1, 888888888);
+            dataGridView1.DataSource = cn.ConsultarMaterias(1, "888888888");
             CargarDatosComboBox();
             Especialidad_Combo.SelectedIndexChanged += EspecialidadCombo_SelectedIndexChanged;
             ConfigurarAutoCompleteEspecialidad();  // Configurar el autocompletado
@@ -37,9 +37,9 @@ namespace Notas_Dev_House
 
         private void btn_agregar_Click(object sender, EventArgs e)
         {
-            cn.CrudMaterias(2, 332, txt_materia.Text, Id_docente_text.Text, Convert.ToInt32(GradoCombo.Text));
+            cn.CrudMaterias(2, Id_Materias_text.Text, txt_materia.Text, Id_docente_text.Text,Docente_Combo.Text, Convert.ToInt32(GradoCombo.Text));
             Borrar_Campos();
-            dataGridView1.DataSource = cn.ConsultarMaterias(1, 888888888);
+            dataGridView1.DataSource = cn.ConsultarMaterias(1, "888888888");
         }
 
         private void CargarDatosComboBox()
@@ -166,16 +166,16 @@ namespace Notas_Dev_House
 
         private void btn_eliminar_Click(object sender, EventArgs e)
         {
-            cn.CrudMaterias(4, Convert.ToInt32(Id_Materias_text.Text), txt_materia.Text, Id_docente_text.Text, Convert.ToInt32(GradoCombo.Text));
+            cn.CrudMaterias(4, (Id_Materias_text.Text), txt_materia.Text, Id_docente_text.Text, Docente_Combo.Text, Convert.ToInt32(GradoCombo.Text));
             Borrar_Campos();
-            dataGridView1.DataSource = cn.ConsultarMaterias(1, 888888888);
+            dataGridView1.DataSource = cn.ConsultarMaterias(1, "888888888");
         }
 
         private void btn_modificar_Click(object sender, EventArgs e)
         {
-            cn.CrudMaterias(3, Convert.ToInt32(Id_Materias_text.Text), txt_materia.Text, Id_docente_text.Text, Convert.ToInt32(GradoCombo.Text));
+            cn.CrudMaterias(3, (Id_Materias_text.Text),null,null,null ,2);
             Borrar_Campos();
-            dataGridView1.DataSource = cn.ConsultarMaterias(1, 888888888);
+            dataGridView1.DataSource = cn.ConsultarMaterias(1, "888888888");
         }
     }
 }

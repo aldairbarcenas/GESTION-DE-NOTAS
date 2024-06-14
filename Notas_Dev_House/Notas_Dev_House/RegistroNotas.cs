@@ -27,7 +27,7 @@ namespace Notas_Dev_House
             // Cargar los datos iniciales del ComboBox Grado           
             dataGridView1.DataSource = cn.ConsultarNotas(1, ComboEstudiante.Text, 243543669);
             DataSet dataSet = cn.CargarDatosComboBox(null, null, 1, 1, "null", "null");
-            ComboGrado.DataSource = dataSet.Tables[2];
+            ComboGrado.DataSource = dataSet.Tables[2]; //todos los grados
             ComboGrado.DisplayMember = "Id";
             ComboPeriodo.DataSource = dataSet.Tables[5];
             ComboPeriodo.DisplayMember = "Id";
@@ -120,7 +120,7 @@ namespace Notas_Dev_House
 
                 if (dataSet1.Tables[7].Rows.Count > 0)
                 {
-                    string idEstudiante = dataSet1.Tables[7].Rows[0]["ID"].ToString();
+                    string idEstudiante = dataSet1.Tables[7].Rows[0]["Id"].ToString();
                     txt_ID_Estudiante.Text = idEstudiante;
                 }
 

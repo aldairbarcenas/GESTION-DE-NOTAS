@@ -56,7 +56,7 @@ namespace BLL
 
         /////////////////////////////////////////// MATERIAS
 
-        public DataTable ConsultarMaterias(int IntProceso, int ID)
+        public DataTable ConsultarMaterias(int IntProceso, string ID)
         {
             return cn.ConsultarMaterias(IntProceso, ID);
 
@@ -69,10 +69,10 @@ namespace BLL
 
         }
 
-        public void CrudMaterias(int intProceso, int ID, string nombre, string docenteId, int gradoId)
+        public void CrudMaterias(int intProceso, string ID, string nombre, string docenteId,string nombredocente, int gradoId)
 
         {
-            cn.CrudMaterias(intProceso, ID, nombre, docenteId, gradoId);
+            cn.CrudMaterias(intProceso, ID, nombre, docenteId,nombredocente, gradoId);
 
         }
 

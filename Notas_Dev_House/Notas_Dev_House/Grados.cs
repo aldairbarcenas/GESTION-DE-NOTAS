@@ -65,10 +65,21 @@ namespace Notas_Dev_House
 
         private void Btn_buscar_Click(object sender, EventArgs e)
         {
-                       
-          
-            dataGridView1.DataSource = cn.ConsultarGrados(5, Convert.ToInt32(buscar_id_text.Text));
-            Borrar_Campos();
+            string id = buscar_id_text.Text;
+
+            if (string.IsNullOrEmpty(id))
+            {
+                dataGridView1.DataSource = cn.ConsultarGrados(1, 1);
+
+            }
+            else
+            {
+                dataGridView1.DataSource = cn.ConsultarGrados(5, Convert.ToInt32(buscar_id_text.Text));
+                Borrar_Campos();
+            }
+
+
+            
 
 
             
