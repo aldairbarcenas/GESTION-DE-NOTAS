@@ -12,10 +12,17 @@ namespace Notas_Dev_House
 {
     public partial class VentanaPrincipal : Form
     {
+        private bool esSuperUsuario;
         public VentanaPrincipal()
         {
             InitializeComponent();
         }
+        public VentanaPrincipal(bool esSuperUsuario)
+        {
+            InitializeComponent();
+            this.esSuperUsuario = esSuperUsuario;
+        }
+
 
         private void estudiantesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -58,7 +65,7 @@ namespace Notas_Dev_House
         private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Usuarios user = new Usuarios();
+            Usuarios user = new Usuarios(esSuperUsuario);
             user.ShowDialog();
             this.Show();
         }

@@ -14,41 +14,50 @@ namespace Notas_Dev_House
     public partial class Form1 : Form
     {
         NegocioSql cn = new NegocioSql();
-        private bool super;
+        public bool esSuperUsuario;
         public Form1()
         {
-            InitializeComponent();
+            InitializeComponent();          
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-             VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
+            
+            string nombreUsuario = Usuario.Text;
+            string contrasena = Contra.Text;
+            esSuperUsuario = false;
 
-            //int numero = cn.CrudUsuarios(5, "2", Usuario.Text, Contra.Text);
+            if (cn.CrudUsuarios(nombreUsuario, contrasena, out esSuperUsuario))
+            {
+                if (esSuperUsuario)
+                {
+                    // Usuario es superusuario
+                    MessageBox.Show("¡Bienvenido, superusuario!");
+                    esSuperUsuario = true;
+                }
+                else
+                {
+                    // Usuario no es superusuario
+                    MessageBox.Show("¡Bienvenido!");
+                }
+                this.Hide();
+                VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(esSuperUsuario);
+                ventanaPrincipal.Show();
+                
+            }
+            else
+            {
+                MessageBox.Show("Error: Usuario o contraseña incorrectos.");
+                this.Hide();
 
+                VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(esSuperUsuario);
+                ventanaPrincipal.Show();
+            }
 
-            //if (cn.CrudUsuarios(5,"2",Usuario.Text,Contra.Text)==1 )
-            //{
-            //    MessageBox.Show("El SUPERusuario ha sido encontrado");
-            //    this.Hide();
-            //    ventanaPrincipal.Show();
-            //    super = true;
-            //}
-            //else if (cn.CrudUsuarios(5, "2", Usuario.Text, Contra.Text) == 2)
-            //{
-            //    MessageBox.Show("El usuario ha sido encontrado");
-            this.Hide();
-            ventanaPrincipal.Show();
-            //    super = false;
-            //}
-            //else
-            //{
-            //    MessageBox.Show("El usuario NO ha sido encontrado");
-            //}
-
-
-
-
+            Usuario.Text = string.Empty;
+            Contra.Text = string.Empty;
 
 
         }
@@ -56,6 +65,11 @@ namespace Notas_Dev_House
         private void button2_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

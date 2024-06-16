@@ -396,18 +396,13 @@ namespace DAL
 
                 SqlCommand comando = new SqlCommand("SP_CrudUsuarios", conexion);
                 comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.AddWithValue("@intProceso", intProceso);
+                comando.Parameters.AddWithValue("@intProceso", intProceso);                
+                comando.Parameters.AddWithValue("@IdUsuario", null);
 
-                if (string.IsNullOrEmpty(IdUsuario))
-                {
-                    comando.Parameters.AddWithValue("@IdUsuario", DBNull.Value);
-                }
-                else
-                {
-                    comando.Parameters.AddWithValue("@IdUsuario", IdUsuario);
-                }
-                               
 
+                SqlParameter paramEsSuperUsuario = new SqlParameter("@EsSuperUsuario", SqlDbType.Bit);
+                paramEsSuperUsuario.Direction = ParameterDirection.Output;
+                comando.Parameters.Add(paramEsSuperUsuario);
 
 
                 SqlDataAdapter data = new SqlDataAdapter(comando);
@@ -426,47 +421,45 @@ namespace DAL
 
         }
 
-        //public int CrudUsuarios(int intProceso, string IdUsuario, string NombreUsuario, string pass)
-        //{
-        //    try
-        //    {
-        //        int resultado = 0; // Variable para almacenar el resultado del procedimiento almacenado
+        public bool CrudUsuarios(string nombreUsuario, string contrasena, out bool esSuperUsuario)
+        {
+            esSuperUsuario = false;
 
-        //        SqlCommand comando = new SqlCommand("SP_CrudUsuarios", conexion);
-        //        comando.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                conexion.Open();
 
-        //        // Parámetros del procedimiento almacenado
-        //        comando.Parameters.AddWithValue("@intProceso", intProceso);
-        //        comando.Parameters.AddWithValue("@IdUsuario", IdUsuario);
-        //        comando.Parameters.AddWithValue("@NombreUsuario", NombreUsuario);
-        //        comando.Parameters.AddWithValue("@Contrasena", pass);
+                SqlCommand command = new SqlCommand("SP_CrudUsuarios", conexion);
+                command.CommandType = CommandType.StoredProcedure;
 
-        //        // Parámetro de salida para el resultado del procedimiento almacenado
-        //        SqlParameter paramResultado = new SqlParameter("@resultado", SqlDbType.Int);
-        //        paramResultado.Direction = ParameterDirection.Output;
-        //        comando.Parameters.Add(paramResultado);
+                // Parámetros de entrada
+                command.Parameters.AddWithValue("@intProceso", 5);
+                command.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
+                command.Parameters.AddWithValue("@Contrasena", contrasena);
 
-        //        conexion.Open();
-        //        comando.ExecuteNonQuery();
+                // Parámetro de salida para indicar si es superusuario
+                SqlParameter paramEsSuperUsuario = new SqlParameter("@EsSuperUsuario", SqlDbType.Bit);
+                paramEsSuperUsuario.Direction = ParameterDirection.Output;
+                command.Parameters.Add(paramEsSuperUsuario);
 
-        //        // Recuperar el valor de salida del procedimiento almacenado
-        //        resultado = Convert.ToInt32(paramResultado.Value);
+                // Ejecutar el comando
+                command.ExecuteNonQuery();
 
-        //        // Retornar el resultado del procedimiento almacenado
-        //        return resultado;
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        // Manejar excepciones de SQL
-        //        Console.WriteLine("Error: " + ex.Message);
-        //        // Retornar un código de error                
+                // Recuperar el valor de retorno
+                esSuperUsuario = Convert.ToBoolean(paramEsSuperUsuario.Value);
 
-        //    }
-        //    finally
-        //    {
-        //        conexion.Close();
-        //    }
-        //}
+                return true; // Credenciales válidas
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al validar credenciales: " + ex.Message);
+                return false; // Error al validar credenciales
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
 
 
 

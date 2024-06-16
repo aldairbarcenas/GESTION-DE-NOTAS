@@ -13,7 +13,7 @@ namespace BLL
     public class NegocioSql
     {
         Conexion cn = new Conexion();
-        
+
 
         public void CrudEstudiante(int intProceso, string ID, string nombres, string apellidos, DateTime FechaNacimiento, string direccion, string telefono, int grado)
 
@@ -69,10 +69,10 @@ namespace BLL
 
         }
 
-        public void CrudMaterias(int intProceso, string ID, string nombre, string docenteId,string nombredocente, int gradoId)
+        public void CrudMaterias(int intProceso, string ID, string nombre, string docenteId, string nombredocente, int gradoId)
 
         {
-            cn.CrudMaterias(intProceso, ID, nombre, docenteId,nombredocente, gradoId);
+            cn.CrudMaterias(intProceso, ID, nombre, docenteId, nombredocente, gradoId);
 
         }
 
@@ -97,10 +97,13 @@ namespace BLL
         {
             return cn.ConsultarUsuarios(intProceso, IdUsuario);
         }
-        //public int CrudUsuarios(int intProceso, string IdUsuario, string NombreUsuario, string pass)
-        //{
-        //    return cn.CrudUsuarios(intProceso, IdUsuario, NombreUsuario, pass);
-        //}
+
+
+        public bool CrudUsuarios(string nombreUsuario, string contrasena, out bool esSuperUsuario)
+        {
+            return cn.CrudUsuarios(nombreUsuario, contrasena, out esSuperUsuario);
+
+        }
     }
 }
 
