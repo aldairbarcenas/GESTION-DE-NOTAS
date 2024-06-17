@@ -421,7 +421,7 @@ namespace DAL
 
         }
 
-        public bool CrudUsuarios(string nombreUsuario, string contrasena, out bool esSuperUsuario)
+        public bool CrudUsuarios(int intProceso, string idUsuario, string nombreUsuario, string contrasena, bool super, out bool esSuperUsuario)
         {
             esSuperUsuario = false;
 
@@ -433,9 +433,15 @@ namespace DAL
                 command.CommandType = CommandType.StoredProcedure;
 
                 // Parámetros de entrada
-                command.Parameters.AddWithValue("@intProceso", 5);
+                command.Parameters.AddWithValue("@intProceso", intProceso);
+                command.Parameters.AddWithValue("@IdUsuario", idUsuario);
                 command.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
                 command.Parameters.AddWithValue("@Contrasena", contrasena);
+
+                // Parámetro de entrada para inserción y actualización
+                SqlParameter paramSuper = new SqlParameter("@Super", SqlDbType.Bit);
+                paramSuper.Value = super ? 1 : 0;
+                command.Parameters.Add(paramSuper);
 
                 // Parámetro de salida para indicar si es superusuario
                 SqlParameter paramEsSuperUsuario = new SqlParameter("@EsSuperUsuario", SqlDbType.Bit);
@@ -446,7 +452,16 @@ namespace DAL
                 command.ExecuteNonQuery();
 
                 // Recuperar el valor de retorno
-                esSuperUsuario = Convert.ToBoolean(paramEsSuperUsuario.Value);
+                object valorRetorno = paramEsSuperUsuario.Value;
+                if (valorRetorno != DBNull.Value)
+                {
+                    esSuperUsuario = Convert.ToBoolean(valorRetorno);
+                }
+                else
+                {
+                    // Si el valor es DBNull, establecer esSuperUsuario como false
+                    esSuperUsuario = false;
+                }
 
                 return true; // Credenciales válidas
             }
@@ -460,6 +475,7 @@ namespace DAL
                 conexion.Close();
             }
         }
+
 
 
 

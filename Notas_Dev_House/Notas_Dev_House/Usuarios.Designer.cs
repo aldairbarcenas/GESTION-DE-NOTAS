@@ -133,6 +133,7 @@
             this.btn_agregar.TabIndex = 9;
             this.btn_agregar.Text = "AGREGAR";
             this.btn_agregar.UseVisualStyleBackColor = true;
+            this.btn_agregar.Click += new System.EventHandler(this.btn_agregar_Click);
             // 
             // btn_Cerrar
             // 
@@ -152,6 +153,7 @@
             this.btn_modificar.TabIndex = 11;
             this.btn_modificar.Text = "MODIFICAR";
             this.btn_modificar.UseVisualStyleBackColor = true;
+            this.btn_modificar.Click += new System.EventHandler(this.btn_modificar_Click);
             // 
             // btn_eliminar
             // 
@@ -161,6 +163,7 @@
             this.btn_eliminar.TabIndex = 12;
             this.btn_eliminar.Text = "ELIMINAR";
             this.btn_eliminar.UseVisualStyleBackColor = true;
+            this.btn_eliminar.Click += new System.EventHandler(this.btn_eliminar_Click);
             // 
             // Usuarios
             // 
@@ -182,6 +185,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "Usuarios";
             this.Text = "Usuarios";
+            this.Load += new System.EventHandler(this.Usuarios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

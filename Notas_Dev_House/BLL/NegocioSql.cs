@@ -99,9 +99,9 @@ namespace BLL
         }
 
 
-        public bool CrudUsuarios(string nombreUsuario, string contrasena, out bool esSuperUsuario)
+        public bool CrudUsuarios(int proceso,string idUsuario,string nombreUsuario, string contrasena,bool super, out bool esSuperUsuario)
         {
-            return cn.CrudUsuarios(nombreUsuario, contrasena, out esSuperUsuario);
+            return cn.CrudUsuarios(proceso,idUsuario, nombreUsuario, contrasena,super, out esSuperUsuario);
 
         }
     }

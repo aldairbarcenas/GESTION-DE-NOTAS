@@ -19,30 +19,22 @@ namespace Notas_Dev_House
 
 
         private bool esSuperUsuario;
-        //public Usuarios()
-        //{
-        //    InitializeComponent();
-        //    //login.ShowDialog();
-        //    esSuperUsuario = login.esSuperUsuario;
+        private bool intsuper;
 
-        //    Superusuario.SelectedIndex = 0;
-        //    dataGridView1.DataSource = cn.ConsultarUsuarios(1, IdUsuario.Text);
-
-        //    if (esSuperUsuario == false)
-        //    {
-        //        Superusuario.Visible = false;
-        //        superUsuario_text.Visible = false;
-        //    }
-
-
-        //}
 
         public Usuarios(bool esSuperUsuario)
         {
             InitializeComponent();
+
+
+           
+
             this.esSuperUsuario = esSuperUsuario;
 
+            
+
             Superusuario.SelectedIndex = 0;
+           
             dataGridView1.DataSource = cn.ConsultarUsuarios(1, IdUsuario.Text);
 
             if (!esSuperUsuario)
@@ -65,6 +57,59 @@ namespace Notas_Dev_House
         private void btn_Cerrar_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void btn_agregar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(Superusuario.Text) || Superusuario.Text == "NO")
+            {
+                intsuper = false;
+            }
+            else if (Superusuario.Text == "SI")
+            {
+                intsuper = true;
+            }
+
+
+            cn.CrudUsuarios(2, IdUsuario.Text, Usuario.Text, Contra.Text, intsuper, out esSuperUsuario);
+            dataGridView1.DataSource = cn.ConsultarUsuarios(1, IdUsuario.Text);
+        }
+
+        private void btn_modificar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(Superusuario.Text) || Superusuario.Text == "NO")
+            {
+                intsuper = false;
+            }
+            else if (Superusuario.Text == "SI")
+            {
+                intsuper = true;
+            }
+
+
+            cn.CrudUsuarios(3, IdUsuario.Text, Usuario.Text, Contra.Text, intsuper,out esSuperUsuario);
+            dataGridView1.DataSource = cn.ConsultarUsuarios(1, IdUsuario.Text);
+        }
+
+        private void btn_eliminar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(Superusuario.Text) || Superusuario.Text == "NO")
+            {
+                intsuper = false;
+            }
+            else if (Superusuario.Text == "SI")
+            {
+                intsuper = true;
+            }
+
+
+            cn.CrudUsuarios(4, IdUsuario.Text, Usuario.Text, Contra.Text, intsuper, out esSuperUsuario);
+            dataGridView1.DataSource = cn.ConsultarUsuarios(1, IdUsuario.Text);
+        }
+
+        private void Usuarios_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
