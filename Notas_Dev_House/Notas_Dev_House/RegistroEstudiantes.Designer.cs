@@ -41,10 +41,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.telefono_txt = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btn_modificar = new System.Windows.Forms.Button();
+            this.btn_eliminar = new System.Windows.Forms.Button();
+            this.btn_cerrar = new System.Windows.Forms.Button();
+            this.btn_buscar = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.buscador_id_text = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -175,49 +175,49 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // btn_modificar
             // 
-            this.button2.Location = new System.Drawing.Point(767, 475);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(136, 64);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "MODIFICAR";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btn_modificar.Location = new System.Drawing.Point(767, 475);
+            this.btn_modificar.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_modificar.Name = "btn_modificar";
+            this.btn_modificar.Size = new System.Drawing.Size(136, 64);
+            this.btn_modificar.TabIndex = 14;
+            this.btn_modificar.Text = "MODIFICAR";
+            this.btn_modificar.UseVisualStyleBackColor = true;
+            this.btn_modificar.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // btn_eliminar
             // 
-            this.button3.Location = new System.Drawing.Point(967, 475);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(136, 64);
-            this.button3.TabIndex = 15;
-            this.button3.Text = "ELIMINAR";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btn_eliminar.Location = new System.Drawing.Point(967, 475);
+            this.btn_eliminar.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_eliminar.Name = "btn_eliminar";
+            this.btn_eliminar.Size = new System.Drawing.Size(136, 64);
+            this.btn_eliminar.TabIndex = 15;
+            this.btn_eliminar.Text = "ELIMINAR";
+            this.btn_eliminar.UseVisualStyleBackColor = true;
+            this.btn_eliminar.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button4
+            // btn_cerrar
             // 
-            this.button4.Location = new System.Drawing.Point(967, 575);
-            this.button4.Margin = new System.Windows.Forms.Padding(4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(136, 64);
-            this.button4.TabIndex = 16;
-            this.button4.Text = "CERRAR";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btn_cerrar.Location = new System.Drawing.Point(967, 575);
+            this.btn_cerrar.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_cerrar.Name = "btn_cerrar";
+            this.btn_cerrar.Size = new System.Drawing.Size(136, 64);
+            this.btn_cerrar.TabIndex = 16;
+            this.btn_cerrar.Text = "CERRAR";
+            this.btn_cerrar.UseVisualStyleBackColor = true;
+            this.btn_cerrar.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button5
+            // btn_buscar
             // 
-            this.button5.Location = new System.Drawing.Point(267, 575);
-            this.button5.Margin = new System.Windows.Forms.Padding(4);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(136, 64);
-            this.button5.TabIndex = 17;
-            this.button5.Text = "BUSCAR";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.btn_buscar.Location = new System.Drawing.Point(267, 575);
+            this.btn_buscar.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_buscar.Name = "btn_buscar";
+            this.btn_buscar.Size = new System.Drawing.Size(136, 64);
+            this.btn_buscar.TabIndex = 17;
+            this.btn_buscar.Text = "BUSCAR";
+            this.btn_buscar.UseVisualStyleBackColor = true;
+            this.btn_buscar.Click += new System.EventHandler(this.button5_Click);
             // 
             // label7
             // 
@@ -273,10 +273,10 @@
             this.Controls.Add(this.grado_txt);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.buscador_id_text);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btn_buscar);
+            this.Controls.Add(this.btn_cerrar);
+            this.Controls.Add(this.btn_eliminar);
+            this.Controls.Add(this.btn_modificar);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.telefono_txt);
@@ -314,10 +314,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox telefono_txt;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btn_modificar;
+        private System.Windows.Forms.Button btn_eliminar;
+        private System.Windows.Forms.Button btn_cerrar;
+        private System.Windows.Forms.Button btn_buscar;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox buscador_id_text;
         private System.Windows.Forms.Label label8;

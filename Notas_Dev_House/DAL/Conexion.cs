@@ -475,7 +475,81 @@ namespace DAL
                 conexion.Close();
             }
         }
+        // DOCENTES //
 
+        public DataTable ConsultarDocentes(string nombres)
+        {
+
+            try
+            {
+                conexion.Open();
+
+                SqlCommand comando = new SqlCommand("SP_CrudDocentes", conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@intProceso", 1);
+
+                if (string.IsNullOrEmpty(nombres))
+                {
+                    comando.Parameters.AddWithValue("@intId", DBNull.Value);
+                }
+                else
+                {
+                    comando.Parameters.AddWithValue("@intId", nombres);
+                }
+
+
+
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable tabla = new DataTable();
+                data.Fill(tabla);
+                conexion.Close();
+                return tabla;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+        }
+
+
+        public void CrudDocente(int intProceso, string ID, string nombrecomopleto, DateTime FechaNacimiento, string direccion, string telefono, string especialidad)
+
+        {
+
+            SqlCommand comando = new SqlCommand("SP_CrudDocentes", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+            //parametros del procedimiento almacenado
+            comando.Parameters.AddWithValue("@intProceso", intProceso);
+            comando.Parameters.AddWithValue("@intId", ID);
+            comando.Parameters.AddWithValue("@strNombreCompleto", nombrecomopleto);
+            
+
+            comando.Parameters.AddWithValue("@dateFechaNacimiento", FechaNacimiento);
+            comando.Parameters.AddWithValue("@strDireccion", direccion);
+            comando.Parameters.AddWithValue("@strEspecialidad ", especialidad);
+            comando.Parameters.AddWithValue("@strTelefono ", telefono);
+           
+
+            try
+            {
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                // Manejar excepciones de SQL
+                Console.WriteLine("Error : " + ex.Message);
+            }
+
+            finally
+            {
+                conexion.Close();
+            }
+        }
 
 
 

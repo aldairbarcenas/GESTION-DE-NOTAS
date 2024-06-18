@@ -99,11 +99,24 @@ namespace BLL
         }
 
 
-        public bool CrudUsuarios(int proceso,string idUsuario,string nombreUsuario, string contrasena,bool super, out bool esSuperUsuario)
+        public bool CrudUsuarios(int proceso, string idUsuario, string nombreUsuario, string contrasena, bool super, out bool esSuperUsuario)
         {
-            return cn.CrudUsuarios(proceso,idUsuario, nombreUsuario, contrasena,super, out esSuperUsuario);
+            return cn.CrudUsuarios(proceso, idUsuario, nombreUsuario, contrasena, super, out esSuperUsuario);
 
         }
+
+        public DataTable ConsultarDocentes(string nombres)
+        {
+            return cn.ConsultarDocentes(nombres);
+        }
+
+
+
+        public void CrudDocente(int intProceso, string ID, string nombrecomopleto, DateTime FechaNacimiento, string direccion, string telefono, string especialidad)
+
+        {
+            cn.CrudDocente(intProceso, ID, nombrecomopleto, FechaNacimiento, direccion, telefono, especialidad);
+        }
+
     }
 }
-

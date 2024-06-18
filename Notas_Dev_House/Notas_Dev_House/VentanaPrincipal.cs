@@ -69,5 +69,18 @@ namespace Notas_Dev_House
             user.ShowDialog();
             this.Show();
         }
+
+        private void docentesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Docentes doc = new Docentes();
+            doc.ShowDialog();
+            this.Show();
+        }
+
+        private void btn_salir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
