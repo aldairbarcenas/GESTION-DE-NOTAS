@@ -14,7 +14,7 @@ namespace Notas_Dev_House
     public partial class Usuarios : Form
     {
         NegocioSql cn = new NegocioSql();
-        Form1 login = new Form1();
+        
     
 
 

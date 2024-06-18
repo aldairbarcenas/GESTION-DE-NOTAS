@@ -71,5 +71,13 @@ namespace Notas_Dev_House
         {
 
         }
+
+        private void btn_Crear_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            NuevoUsuario user = new NuevoUsuario();
+            user.ShowDialog();
+            this.Show();
+        }
     }
 }

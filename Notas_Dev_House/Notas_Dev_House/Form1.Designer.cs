@@ -97,6 +97,7 @@
             this.btn_Crear.TabIndex = 6;
             this.btn_Crear.Text = "CREAR USUARIO";
             this.btn_Crear.UseVisualStyleBackColor = true;
+            this.btn_Crear.Click += new System.EventHandler(this.btn_Crear_Click);
             // 
             // Form1
             // 
