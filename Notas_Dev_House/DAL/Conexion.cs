@@ -551,6 +551,123 @@ namespace DAL
             }
         }
 
+        public DataTable ReporteEstudiantes(string EstudianteId)
+        {
+            try
+            {
+                conexion.Open();
+
+                SqlCommand comando = new SqlCommand("sp_ReporteNotasPorEstudiante", conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                
+
+                if (string.IsNullOrEmpty(EstudianteId))
+                {
+                    comando.Parameters.AddWithValue("@EstudianteID", DBNull.Value);
+                }
+                else
+                {
+                    comando.Parameters.AddWithValue("@EstudianteID", EstudianteId);
+                }
+
+
+
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable tabla = new DataTable();
+                data.Fill(tabla);
+                conexion.Close();
+                return tabla;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+
+
+
+
+        }
+
+        public DataTable ReporteMaterias(string MateriaId)
+        {
+            try
+            {
+                conexion.Open();
+
+                SqlCommand comando = new SqlCommand("sp_ReporteNotasPorMateria", conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+
+
+                if (string.IsNullOrEmpty(MateriaId))
+                {
+                    comando.Parameters.AddWithValue("@MateriaID", DBNull.Value);
+                }
+                else
+                {
+                    comando.Parameters.AddWithValue("@MateriaID", MateriaId);
+                }
+
+
+
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable tabla = new DataTable();
+                data.Fill(tabla);
+                conexion.Close();
+                return tabla;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+
+
+
+
+        }
+
+        public DataTable ReporteGrados(int Idgrado)
+        {
+            try
+            {
+                conexion.Open();
+
+                SqlCommand comando = new SqlCommand("sp_ReporteNotasPorGrado", conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+
+
+                
+                comando.Parameters.AddWithValue("@GradoID", Idgrado);
+                
+
+
+
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable tabla = new DataTable();
+                data.Fill(tabla);
+                conexion.Close();
+                return tabla;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+
+
+
+
+        }
 
 
 

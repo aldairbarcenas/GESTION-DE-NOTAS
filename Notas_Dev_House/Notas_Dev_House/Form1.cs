@@ -50,8 +50,8 @@ namespace Notas_Dev_House
             else
             {
                 MessageBox.Show("Error: Usuario o contraseña incorrectos.");
-                this.Hide();
 
+                this.Hide();
                 VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(esSuperUsuario);
                 ventanaPrincipal.Show();
             }

@@ -182,6 +182,7 @@
             this.Controls.Add(this.id_grado_txt);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Grados";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Grados";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

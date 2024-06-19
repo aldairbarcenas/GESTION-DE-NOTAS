@@ -82,5 +82,29 @@ namespace Notas_Dev_House
         {
             Application.Exit();
         }
+
+        private void estudianteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Reportes doc = new Reportes();
+            doc.ShowDialog();
+            this.Show();
+        }
+
+        private void materiaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ReporteMateria doc = new ReporteMateria();
+            doc.ShowDialog();
+            this.Show();
+        }
+
+        private void gradoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ReporteGrados doc = new ReporteGrados();
+            doc.ShowDialog();
+            this.Show();
+        }
     }
 }

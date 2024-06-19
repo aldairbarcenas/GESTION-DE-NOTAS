@@ -117,6 +117,21 @@ namespace BLL
         {
             cn.CrudDocente(intProceso, ID, nombrecomopleto, FechaNacimiento, direccion, telefono, especialidad);
         }
+        public DataTable ReporteEstudiantes(string EstudianteId)
+        {
 
+            return cn.ReporteEstudiantes(EstudianteId);
+        }
+
+        public DataTable ReporteMaterias(string MateriaId)
+        {
+
+            return cn.ReporteMaterias(MateriaId);
+        }
+
+        public DataTable ReporteGrados(int Idgrado)
+        {
+            return cn.ReporteGrados(Idgrado);
+        }
     }
 }

@@ -310,6 +310,7 @@
             this.Controls.Add(this.ComboGrado);
             this.Controls.Add(this.dataGridView1);
             this.Name = "RegistroNotas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RegistroNotas";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

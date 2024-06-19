@@ -90,6 +90,24 @@
     <Compile Include="RegistroNotas.Designer.cs">
       <DependentUpon>RegistroNotas.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReporteGrados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReporteGrados.Designer.cs">
+      <DependentUpon>ReporteGrados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteMateria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReporteMateria.Designer.cs">
+      <DependentUpon>ReporteMateria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes.Designer.cs">
+      <DependentUpon>Reportes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Usuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +149,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RegistroNotas.resx">
       <DependentUpon>RegistroNotas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReporteGrados.resx">
+      <DependentUpon>ReporteGrados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReporteMateria.resx">
+      <DependentUpon>ReporteMateria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes.resx">
+      <DependentUpon>Reportes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Usuarios.resx">
       <DependentUpon>Usuarios.cs</DependentUpon>

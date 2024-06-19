@@ -120,6 +120,7 @@
             this.Controls.Add(this.IdUsuario);
             this.Controls.Add(this.label1);
             this.Name = "NuevoUsuario";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NuevoUsuario";
             this.ResumeLayout(false);
             this.PerformLayout();
