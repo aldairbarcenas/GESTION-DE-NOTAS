@@ -41,7 +41,7 @@ namespace DAL
                     comando.Parameters.AddWithValue("@strNombres", nombres);
                 }
 
-               
+
 
                 SqlDataAdapter data = new SqlDataAdapter(comando);
                 DataTable tabla = new DataTable();
@@ -55,27 +55,27 @@ namespace DAL
 
                 throw;
             }
-           
+
 
         }
 
 
-        public void CrudEstudiante(int intProceso, string ID, string nombres, string apellidos, DateTime FechaNacimiento, string direccion, string telefono , int grado)
-        
-        {                   
-                
-                SqlCommand comando = new SqlCommand("SP_CrudEstudiantes", conexion);
-                comando.CommandType = CommandType.StoredProcedure; 
-                //parametros del procedimiento almacenado
-                comando.Parameters.AddWithValue("@intProceso", intProceso);
-                comando.Parameters.AddWithValue("@intId", ID);
-                comando.Parameters.AddWithValue("@strNombres", nombres);
-                comando.Parameters.AddWithValue("@strApellidos", apellidos);
+        public void CrudEstudiante(int intProceso, string ID, string nombres, string apellidos, DateTime FechaNacimiento, string direccion, string telefono, int grado)
 
-                comando.Parameters.AddWithValue("@dateFechaNacimiento", FechaNacimiento);
-                comando.Parameters.AddWithValue("@strDireccion", direccion);
-                comando.Parameters.AddWithValue("@strTelefono", telefono);
-                comando.Parameters.AddWithValue("@IntGrado", grado);
+        {
+
+            SqlCommand comando = new SqlCommand("SP_CrudEstudiantes", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+            //parametros del procedimiento almacenado
+            comando.Parameters.AddWithValue("@intProceso", intProceso);
+            comando.Parameters.AddWithValue("@intId", ID);
+            comando.Parameters.AddWithValue("@strNombres", nombres);
+            comando.Parameters.AddWithValue("@strApellidos", apellidos);
+
+            comando.Parameters.AddWithValue("@dateFechaNacimiento", FechaNacimiento);
+            comando.Parameters.AddWithValue("@strDireccion", direccion);
+            comando.Parameters.AddWithValue("@strTelefono", telefono);
+            comando.Parameters.AddWithValue("@IntGrado", grado);
 
             try
             {
@@ -97,11 +97,11 @@ namespace DAL
 
         public void EliminarEstudiante(int intProceso, string ID)
 
-        {            
+        {
             SqlCommand comando = new SqlCommand("SP_CrudEstudiantes", conexion);
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@intProceso", intProceso);
-            comando.Parameters.AddWithValue("@intId", ID);          
+            comando.Parameters.AddWithValue("@intId", ID);
 
             try
             {
@@ -169,7 +169,7 @@ namespace DAL
             SqlCommand comando = new SqlCommand("SP_CrudGrados", conexion);
             comando.CommandType = CommandType.StoredProcedure;
             //parametros del procedimiento almacenado
-            comando.Parameters.AddWithValue("@intProceso", intProceso);           
+            comando.Parameters.AddWithValue("@intProceso", intProceso);
             comando.Parameters.AddWithValue("@strNombre", Nombre);
             comando.Parameters.AddWithValue("@intId", ID);
 
@@ -205,13 +205,13 @@ namespace DAL
                 comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.AddWithValue("@intProceso", intProceso);
 
-               
-                    
-                
-                
-                
-                    comando.Parameters.AddWithValue("@intId", ID);
-                
+
+
+
+
+
+                comando.Parameters.AddWithValue("@intId", ID);
+
 
                 SqlDataAdapter data = new SqlDataAdapter(comando);
                 DataTable tabla = new DataTable();
@@ -230,7 +230,7 @@ namespace DAL
         }
 
 
-        public void CrudMaterias(int intProceso, string ID, string nombre, string docenteId,string NombreDocente, int gradoId)
+        public void CrudMaterias(int intProceso, string ID, string nombre, string docenteId, string NombreDocente, int gradoId)
 
         {
 
@@ -239,14 +239,14 @@ namespace DAL
             //parametros del procedimiento almacenado
             comando.Parameters.AddWithValue("@intProceso", intProceso);
             comando.Parameters.AddWithValue("@IntId", ID);
-            comando.Parameters.AddWithValue("@strNombre", nombre);            
+            comando.Parameters.AddWithValue("@strNombre", nombre);
             comando.Parameters.AddWithValue("@strDocenteId ", docenteId);
             comando.Parameters.AddWithValue("@NombreDocente", NombreDocente);
             comando.Parameters.AddWithValue("@intGradoId", gradoId);
 
 
 
- 
+
             try
             {
                 conexion.Open();
@@ -265,7 +265,7 @@ namespace DAL
         }
 
 
-        public DataSet CargarDatosComboBox(string especialidad, string nombreDocente, int grado, int periodo, 
+        public DataSet CargarDatosComboBox(string especialidad, string nombreDocente, int grado, int periodo,
             string estudiante, string NombreMateria)
         {
             DataSet dataSet = new DataSet();
@@ -396,7 +396,7 @@ namespace DAL
 
                 SqlCommand comando = new SqlCommand("SP_CrudUsuarios", conexion);
                 comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.AddWithValue("@intProceso", intProceso);                
+                comando.Parameters.AddWithValue("@intProceso", intProceso);
                 comando.Parameters.AddWithValue("@IdUsuario", null);
 
 
@@ -526,13 +526,13 @@ namespace DAL
             comando.Parameters.AddWithValue("@intProceso", intProceso);
             comando.Parameters.AddWithValue("@intId", ID);
             comando.Parameters.AddWithValue("@strNombreCompleto", nombrecomopleto);
-            
+
 
             comando.Parameters.AddWithValue("@dateFechaNacimiento", FechaNacimiento);
             comando.Parameters.AddWithValue("@strDireccion", direccion);
             comando.Parameters.AddWithValue("@strEspecialidad ", especialidad);
             comando.Parameters.AddWithValue("@strTelefono ", telefono);
-           
+
 
             try
             {
@@ -559,7 +559,7 @@ namespace DAL
 
                 SqlCommand comando = new SqlCommand("sp_ReporteNotasPorEstudiante", conexion);
                 comando.CommandType = CommandType.StoredProcedure;
-                
+
 
                 if (string.IsNullOrEmpty(EstudianteId))
                 {
@@ -643,9 +643,9 @@ namespace DAL
                 comando.CommandType = CommandType.StoredProcedure;
 
 
-                
+
                 comando.Parameters.AddWithValue("@GradoID", Idgrado);
-                
+
 
 
 
@@ -662,14 +662,51 @@ namespace DAL
                 throw;
             }
 
+        }
 
+        public DataTable RendimientoPorGrado()
+        {
+            try
+            {
+                conexion.Open();
 
+                SqlCommand comando = new SqlCommand("sp_RendimientoPorGrado", conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable tabla = new DataTable();
+                data.Fill(tabla);
+                conexion.Close();
+                return tabla;
 
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
 
 
         }
+        public DataTable RendimientoPorMateria()
+        {
+            try
+            {
+                conexion.Open();
 
+                SqlCommand comando = new SqlCommand("sp_RendimientoPorMateria", conexion);
+                comando.CommandType = CommandType.StoredProcedure;  
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                DataTable tabla = new DataTable();
+                data.Fill(tabla);
+                conexion.Close();
+                return tabla;
 
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
+        }
     }
 }

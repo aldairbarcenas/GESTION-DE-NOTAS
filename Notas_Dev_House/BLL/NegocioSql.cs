@@ -133,5 +133,13 @@ namespace BLL
         {
             return cn.ReporteGrados(Idgrado);
         }
+        public DataTable RendimientoPorGrado()
+        {
+            return cn.RendimientoPorGrado();
+        }
+        public DataTable RedimientoPorMateria()
+        {
+            return cn.RendimientoPorMateria();
+        }
     }
 }

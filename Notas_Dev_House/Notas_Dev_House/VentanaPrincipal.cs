@@ -106,5 +106,13 @@ namespace Notas_Dev_House
             doc.ShowDialog();
             this.Show();
         }
+
+        private void gradoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            RendimientoGrado doc = new RendimientoGrado();
+            doc.ShowDialog();
+            this.Show();
+        }
     }
 }

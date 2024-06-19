@@ -137,21 +137,21 @@
             // estudianteToolStripMenuItem
             // 
             this.estudianteToolStripMenuItem.Name = "estudianteToolStripMenuItem";
-            this.estudianteToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.estudianteToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
             this.estudianteToolStripMenuItem.Text = "Estudiante";
             this.estudianteToolStripMenuItem.Click += new System.EventHandler(this.estudianteToolStripMenuItem_Click);
             // 
             // materiaToolStripMenuItem
             // 
             this.materiaToolStripMenuItem.Name = "materiaToolStripMenuItem";
-            this.materiaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.materiaToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
             this.materiaToolStripMenuItem.Text = "Materia";
             this.materiaToolStripMenuItem.Click += new System.EventHandler(this.materiaToolStripMenuItem_Click);
             // 
             // gradoToolStripMenuItem
             // 
             this.gradoToolStripMenuItem.Name = "gradoToolStripMenuItem";
-            this.gradoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.gradoToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
             this.gradoToolStripMenuItem.Text = "Grado";
             this.gradoToolStripMenuItem.Click += new System.EventHandler(this.gradoToolStripMenuItem_Click);
             // 
@@ -167,13 +167,14 @@
             // gradoToolStripMenuItem1
             // 
             this.gradoToolStripMenuItem1.Name = "gradoToolStripMenuItem1";
-            this.gradoToolStripMenuItem1.Size = new System.Drawing.Size(143, 26);
+            this.gradoToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.gradoToolStripMenuItem1.Text = "Grado";
+            this.gradoToolStripMenuItem1.Click += new System.EventHandler(this.gradoToolStripMenuItem1_Click);
             // 
             // materiaToolStripMenuItem1
             // 
             this.materiaToolStripMenuItem1.Name = "materiaToolStripMenuItem1";
-            this.materiaToolStripMenuItem1.Size = new System.Drawing.Size(143, 26);
+            this.materiaToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.materiaToolStripMenuItem1.Text = "Materia";
             // 
             // btn_salir
